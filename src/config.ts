@@ -60,15 +60,15 @@ export interface HeroConfig {
 export const heroConfig: HeroConfig = {
   eyebrow: "HOTEL AI · IN ACTION",
   title: "张世鑫",
-  subtitleLine1: "酒店民宿 AI 实战赋能 · 订单来了 AI 酒店培训特聘讲师",
+  subtitleLine1: "酒旅 AI 全域运营实战专家 · 订单来了 AI 酒店培训特聘讲师",
   subtitleLine2: "Smart Order AI Work Platform · Certified Trainer",
   motto: "把 AI 变成店里最得力的员工",
   portrait: "images/portrait.jpg",
   portraitAlt: "张世鑫",
   stats: [
     { value: "7年", label: "酒旅行业深耕" },
-    { value: "10+", label: "累计自营门店" },
-    { value: "30+家", label: "代运营/陪跑项目" },
+    { value: "5000+万", label: "酒旅板块抖音 GMV" },
+    { value: "60+", label: "自营+代运营落地项目" },
     { value: "2023→", label: "创业至今" },
   ],
 };
@@ -100,13 +100,14 @@ export const aboutConfig: AboutConfig = {
   title: "从携程区域经理，到酒店 AI 实战派",
   identities: [
     "订单来了 AI 酒店培训特聘讲师",
+    "酒店投资人",
     "OPC（One-Person Center）一人酒店中台实践者",
     "福建 · 原携程程长营讲师",
   ],
   paragraphs: [
     "7 年酒旅行业深耕。2019 年毕业即加入携程，从运营助理晋升区域经理，主导泉州、莆田 0-5 星级酒店对接，同时担任福建 · 携程程长营讲师——携程的规则、流量与转化逻辑，是我在平台一线练出来的基本功。",
-    "2023 年创业至今，做的是酒店民宿的全域运营：线上 OTA 覆盖携程系、美团系、飞猪系，新媒体打通抖音、小红书，私域搭建与微信公众号沉淀复购，百度地图、高德地图的本地流量也在做；配套线上线下的培训赋能。累计自营门店 10+ 家，代运营与陪跑项目 30+ 家。",
-    "现在专注用 AI 重新设计门店的运营体系：流程自动化、岗位提效、成本优化、知识库建设与 GEO 优化，帮门店在 AI 时代被更多客人看见。",
+    "2023 年创业至今，做的是酒店民宿的全域运营：线上 OTA 覆盖携程系、美团系、飞猪系，新媒体打通抖音、小红书，私域搭建与微信公众号沉淀复购，百度地图、高德地图的本地流量也在做；配套百位抖音、小红书达人矩阵资源和线上线下培训赋能。累计酒旅板块抖音 GMV 5000+ 万，自营 + 代运营落地 60+ 酒店民宿项目。",
+    "现在专注用 AI 重新设计门店的运营体系：流程自动化、岗位提效、成本优化、知识库建设与 GEO 优化，打造 OPC 一人酒店中台，打通 OTA、短视频、大模型 GEO 的全新流量，帮门店在 AI 时代被更多客人看见。",
   ],
   stackLabel: "AI 工具栈",
   stack: ["腾讯 WorkBuddy", "豆包工作", "Codex", "Obsidian 知识库"],
@@ -119,7 +120,7 @@ export const aboutConfig: AboutConfig = {
     {
       period: "2023 →",
       title: "创业 · 全域运营实战",
-      detail: "自营门店 10+ 家、陪跑 30+ 家，OTA + 新媒体 + 私域全渠道。",
+      detail: "自营 + 代运营落地 60+ 项目，抖音 GMV 5000+ 万，OTA + 新媒体 + 私域全渠道。",
     },
     {
       period: "现在",
@@ -347,6 +348,7 @@ export interface SkillItem {
   hue: string; // 卡片封面渐变色
   download?: string; // 可下载的 Skill 包地址（/skills/xxx.zip）
   doc?: string; // 使用说明页路由（/skill/xxx）
+  author?: string; // 开源收录时署名原作者
 }
 
 export interface SkillCategory {
@@ -371,7 +373,7 @@ export const skillsConfig: SkillsConfig = {
   sectionLabel: "SKILL 与作品 / OPEN SOURCE",
   title: "世鑫 Skill 社区",
   subtitle:
-    "一组上架在订单来了 AI 工作台技能社区的「世鑫来了」门店经营系列，一组是我日常运营在用的效率工具。全部免费开放——带「下载」按钮的可以直接打包带走，其余领取方式见页尾。",
+    "三组内容：上架在订单来了 AI 工作台技能社区的「世鑫来了」门店经营系列、我日常运营在用的效率工具，以及我收集的开源社区精选（已署名原作者）。全部免费——带「下载」按钮的可以直接打包带走，其余领取方式见页尾。",
   groups: [
     {
       name: "订单来了 AI 工作台技能社区",
@@ -577,6 +579,67 @@ export const skillsConfig: SkillsConfig = {
         },
       ],
     },
+    {
+      name: "社区精选 · 开源收录",
+      note: "原作者署名分享 · 感谢开源",
+      categories: [
+        {
+          name: "图文与发布",
+          items: [
+            {
+              title: "社交卡片图文生成",
+              tag: "图文排版",
+              desc: "文章一键变成小红书图文组卡 + 公众号封面对。",
+              hue: "linear-gradient(135deg,#be185d,#f9a8d4)",
+              download: "/skills/guizang-social-card.zip",
+              doc: "/skill/guizang-social-card",
+              author: "归藏（op7418）创作",
+            },
+            {
+              title: "公众号文章一键发布",
+              tag: "私域运营",
+              desc: "Markdown 文章直接进公众号草稿箱，排版不丢。",
+              hue: "linear-gradient(135deg,#16a34a,#86efac)",
+              download: "/skills/wechat-article-publisher.zip",
+              doc: "/skill/wechat-article-publisher",
+              author: "开源社区 · MIT 协议",
+            },
+          ],
+        },
+        {
+          name: "效率与研究",
+          items: [
+            {
+              title: "API 网关",
+              tag: "效率工具",
+              desc: "让 AI 统一调用 GitHub、飞书、Notion 等平台接口。",
+              hue: "linear-gradient(135deg,#334155,#94a3b8)",
+              download: "/skills/api-gateway.zip",
+              doc: "/skill/api-gateway",
+              author: "开源社区 · MIT 协议",
+            },
+            {
+              title: "技能发现助手",
+              tag: "AI 入门",
+              desc: "技能太多不知道用哪个？用大白话问它就行。",
+              hue: "linear-gradient(135deg,#065f46,#6ee7b7)",
+              download: "/skills/find-skill.zip",
+              doc: "/skill/find-skill",
+              author: "开源社区 · MIT 协议",
+            },
+            {
+              title: "美股分析",
+              tag: "投资研究",
+              desc: "给一个股票代码，输出五维度的结构化研究报告。",
+              hue: "linear-gradient(135deg,#1e40af,#93c5fd)",
+              download: "/skills/us-stock-analysis.zip",
+              doc: "/skill/us-stock-analysis",
+              author: "开源社区收集",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
@@ -662,7 +725,7 @@ export const avatarConfig: AvatarConfig = {
   points: [
     {
       title: "实战经验打底",
-      desc: "知识库来自我 7 年酒旅一线、自营门店和 30+ 陪跑项目沉淀的真实打法，不是网上抄的通用答案。",
+      desc: "知识库来自我 7 年酒旅一线、60+ 自营与代运营落地项目沉淀的真实打法，不是网上抄的通用答案。",
     },
     {
       title: "24 小时在线答疑",
