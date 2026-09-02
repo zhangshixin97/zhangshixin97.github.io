@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Concept B — 深蓝人像主视觉</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1440px; height: 900px; overflow: hidden; }
+  body {
+    font-family: "PingFang SC", "Helvetica Neue", sans-serif;
+    background: #050d22;
+    position: relative;
+    color: #eaf1ff;
+  }
+  .bg-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(900px 500px at 78% 30%, rgba(47,107,255,.22), transparent 65%),
+      radial-gradient(700px 500px at 10% 90%, rgba(140,80,255,.14), transparent 60%);
+  }
+  .grid-bg {
+    position: absolute; inset: 0; opacity: .5;
+    background-image:
+      linear-gradient(rgba(148,178,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,178,255,0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+  .grain { position: absolute; inset: 0; opacity: .6; mix-blend-mode: overlay; pointer-events: none; }
+
+  nav {
+    position: absolute; top: 0; left: 0; right: 0; height: 76px; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 56px;
+  }
+  .brand { font-weight: 700; font-size: 19px; letter-spacing: 1px; }
+  .brand span { color: #4d8dff; }
+  .nav-links { display: flex; gap: 34px; font-size: 13.5px; color: #8fa2c8; }
+  .nav-cta { font-size: 13px; color: #050d22; background: #4d8dff; padding: 10px 22px; border-radius: 999px; font-weight: 600; }
+
+  .hero { position: absolute; inset: 0; display: flex; z-index: 5; }
+  .hero-left {
+    flex: 1.2; display: flex; flex-direction: column; justify-content: center; padding-left: 56px;
+  }
+  .en-tag {
+    font-family: "SF Mono", "Menlo", monospace; font-size: 13.5px; letter-spacing: 6px;
+    color: #4d8dff; margin-bottom: 26px; font-weight: 600;
+  }
+  h1 { font-size: 156px; font-weight: 900; letter-spacing: 2px; line-height: 1.0; }
+  h1 .dot { color: #4d8dff; }
+  .sub { margin-top: 30px; font-size: 21px; font-weight: 600; color: #c7d5f2; letter-spacing: 1px; }
+  .motto { margin-top: 42px; display: inline-flex; align-items: center; gap: 14px; }
+  .motto-bar { width: 46px; height: 5px; background: linear-gradient(90deg,#4d8dff,#8c50ff); border-radius: 3px; box-shadow: 0 0 16px rgba(77,141,255,.8); }
+  .motto-text { font-size: 17px; font-weight: 700; letter-spacing: 2px; }
+
+  .hero-right { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
+  .frame {
+    position: relative; width: 420px; height: 640px; border-radius: 22px; overflow: hidden;
+    border: 1px solid rgba(148,178,255,.35);
+    box-shadow: 0 40px 90px rgba(0,0,0,.5), 0 0 60px rgba(77,141,255,.25);
+    transform: rotate(2deg);
+  }
+  .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .frame::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,13,34,.55), transparent 40%);
+  }
+  .frame-tag {
+    position: absolute; left: 18px; bottom: 16px; z-index: 2;
+    font-family: "SF Mono","Menlo",monospace; font-size: 12px; letter-spacing: 3px; color: #eaf1ff;
+  }
+  .orbit {
+    position: absolute; border-radius: 50%; border: 1px dashed rgba(148,178,255,.3);
+  }
+  .o1 { width: 560px; height: 560px; top: 60px; right: -40px; }
+  .o2 { width: 700px; height: 700px; top: -10px; right: -110px; opacity: .5; }
+
+  .stats {
+    position: absolute; left: 56px; bottom: 42px; display: flex; gap: 44px; z-index: 8;
+  }
+  .stat b { font-size: 26px; font-weight: 900; }
+  .stat b i { font-style: normal; color: #4d8dff; }
+  .stat span { display: block; margin-top: 4px; font-size: 12px; color: #8fa2c8; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="grid-bg"></div>
+  <svg class="grain" xmlns="http://www.w3.org/2000/svg">
+    <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0"/></filter>
+    <rect width="100%" height="100%" filter="url(#n)"/>
+  </svg>
+
+  <nav>
+    <div class="brand">张世鑫<span>.</span></div>
+    <div class="nav-links"><span>关于我</span><span>实战落地</span><span>Skill 与作品</span><span>联系我</span></div>
+    <div class="nav-cta">合作咨询</div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="en-tag">HOTEL AI · IN ACTION</div>
+      <h1>张世鑫<span class="dot">.</span></h1>
+      <div class="sub">酒店民宿 AI 实战赋能 · 订单来了 AI 特聘讲师</div>
+      <div class="motto">
+        <div class="motto-bar"></div>
+        <div class="motto-text">自己先跑通，再教给同行</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="orbit o1"></div>
+      <div class="orbit o2"></div>
+      <div class="frame">
+        <img src="ref-2.jpg" alt="张世鑫">
+        <div class="frame-tag">ZHANG SHIXIN · 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>4<i>年</i></b><span>携程实战</span></div>
+    <div class="stat"><b>6<i>+</i></b><span>自营门店</span></div>
+    <div class="stat"><b>10<i>+</i></b><span>代运营项目</span></div>
+    <div class="stat"><b>2023<i>→</i></b><span>创业至今</span></div>
+  </div>
+</body>
+</html>
