@@ -114,6 +114,24 @@ export default function SkillDoc() {
           {doc.title}
         </h1>
 
+        {doc.author && (
+          <div
+            style={{
+              margin: '-16px 0 40px 0',
+              padding: '14px 18px',
+              borderRadius: 12,
+              background: 'rgba(37,99,235,0.06)',
+              border: '1px solid rgba(37,99,235,0.15)',
+              fontSize: 13,
+              lineHeight: 1.8,
+              color: '#3d4652',
+            }}
+          >
+            <span style={{ fontWeight: 700, color: '#2563eb' }}>署名说明：</span>
+            本 Skill 原作者为 {doc.author}。本站仅作收录分享，感谢作者开源；版权归原作者所有。
+          </div>
+        )}
+
         <div
           className="skill-doc-content"
           // eslint-disable-next-line react/no-danger
