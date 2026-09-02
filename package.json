@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "deploy": "npm run build && node tools/deploy-netlify.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy:gh": "npm run build && bash tools/deploy-github-pages.sh",
+    "deploy:all": "npm run build && node tools/deploy-netlify.mjs && bash tools/deploy-github-pages.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
