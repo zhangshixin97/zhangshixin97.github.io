@@ -25,9 +25,9 @@ function HomePage() {
         <Hero />
         <About />
         <Curriculum />
-        <Avatar />
-        <Skills />
         <Blueprint />
+        <Skills />
+        <Avatar />
         <Footer />
       </main>
     </div>

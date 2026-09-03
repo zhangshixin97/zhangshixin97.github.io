@@ -109,6 +109,39 @@ export default function CapabilityDetail() {
               {data.subtitle}
             </p>
           )}
+          {data.video && (
+            <div style={{ marginTop: 48 }}>
+              <video
+                src={data.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                style={{
+                  width: '100%',
+                  maxWidth: 360,
+                  borderRadius: 20,
+                  boxShadow: '0 24px 60px rgba(16,20,24,0.16)',
+                  display: 'block',
+                  background: '#000',
+                }}
+              />
+              {data.videoCaption && (
+                <p
+                  style={{
+                    fontFamily: "'GeistMono', monospace",
+                    fontSize: 11,
+                    letterSpacing: '0.12em',
+                    color: '#9aa3af',
+                    marginTop: 14,
+                  }}
+                >
+                  {data.videoCaption}
+                </p>
+              )}
+            </div>
+          )}
         </section>
 
         {/* Divider */}
