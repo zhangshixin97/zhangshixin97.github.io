@@ -185,7 +185,7 @@ export const capabilitiesConfig: CapabilitiesConfig = {
       hue: "linear-gradient(135deg,#2563eb 0%,#60a5fa 100%)",
     },
     {
-      title: "AI 智能回复",
+      title: "AI 智能客服",
       slug: "ai-reply",
       english: "AI Concierge",
       description:
@@ -203,9 +203,9 @@ export const capabilitiesConfig: CapabilitiesConfig = {
       hue: "linear-gradient(135deg,#ea580c 0%,#fb923c 100%)",
     },
     {
-      title: "AI 数字分身视频",
+      title: "AI 营销视频",
       slug: "ai-video",
-      english: "AI Avatar Video",
+      english: "AI Marketing Video",
       description:
         "AI 写脚本、数字分身出镜、门店实景做画面：客房、餐饮、二销产品，人人都能快速产出带货视频。",
       points: ["数字分身出镜", "脚本一键生成", "客房餐饮二销带货"],
@@ -283,13 +283,13 @@ export const capabilityDetailConfig: CapabilityDetailConfig = {
       ],
     },
     "ai-reply": {
-      title: "AI 智能回复",
+      title: "AI 智能客服",
       subtitle: "24 小时在线的知识库问答助手。",
       paragraphs: [
         "【专业解释】基于大语言模型与门店知识库的问答体系。将房价、房态、退改政策、入住须知等结构化入库，AI 按标准口径生成回答：私域场景（微信、企业微信）可直接自动应答；OTA 渠道受平台规则限制无法由第三方自动接管，采用「AI 起草回复 + 人工确认发出」的辅助模式，兼顾响应速度与合规。",
         "【大白话】客人问「能不能带宠物」「几点能入住」，AI 几秒钟就给出标准答案，口径跟你店里最熟练的前台一模一样。微信里的咨询它直接接住；携程、美团上来的询单，它先把回复草稿写好，你扫一眼、点个头就能发——半夜的咨询再也不用硬撑着爬起来回了。",
         "客人咨询的响应速度，直接决定转化率。携程、美团上来的询单，晚回五分钟，客人可能已经在别家下单；深夜和清晨的咨询，更是大量流失在无人值守的时间段里。而养着一支能三班倒的客服团队，对绝大多数酒店民宿来说并不现实。",
-        "AI 智能回复解决这个矛盾的方式很务实：先把门店知识库搭好——房价、房态、退改政策、周边交通、入住须知，这些占咨询量八成以上的标准问题，AI 都能秒级给出准确、口径一致的答案。微信私域里它直接应答；OTA 渠道的询单，它生成回复草稿、人工确认后发出——平台规则不允许第三方全自动接管，「AI 起草 + 人确认」反而又快又稳。",
+        "AI 智能客服解决这个矛盾的方式很务实：先把门店知识库搭好——房价、房态、退改政策、周边交通、入住须知，这些占咨询量八成以上的标准问题，AI 都能秒级给出准确、口径一致的答案。微信私域里它直接应答；OTA 渠道的询单，它生成回复草稿、人工确认后发出——平台规则不允许第三方全自动接管，「AI 起草 + 人确认」反而又快又稳。",
         "落地后的价值非常直接：响应速度从「看人在不在」变成「秒级出草稿」，不再漏掉任何一个时间段的咨询；标准化服务输出，新员工也能立刻拥有老员工的话术水平；把人力释放到真正需要温度服务的环节。响应更快，转化自然更高。",
       ],
     },
@@ -305,7 +305,7 @@ export const capabilityDetailConfig: CapabilityDetailConfig = {
       ],
     },
     "ai-video": {
-      title: "AI 数字分身视频",
+      title: "AI 营销视频",
       subtitle: "让数字分身替你出镜，客房、餐饮、二销都能拍成带货视频。",
       video: "/videos/ai-avatar-demo.mp4",
       videoCaption: "AI 生成示例：数字分身 + 民宿实景，零拍摄出片",
@@ -377,7 +377,7 @@ export const skillsConfig: SkillsConfig = {
   sectionLabel: "SKILL 与作品 / OPEN SOURCE",
   title: "世鑫 Skill 社区",
   subtitle:
-    "三组内容：上架在订单来了 AI 工作台技能社区的「世鑫来了」门店经营系列、我日常运营在用的效率工具，以及我收集的开源社区精选（已署名原作者）。全部免费——带「下载」按钮的可以直接打包带走，其余领取方式见页尾。",
+    "两组内容：上架在订单来了 AI 工作台技能社区的「世鑫来了」门店经营系列，以及我日常运营在用的实战工具（含署名收录的开源作品）。全部免费——带「下载」按钮的可以直接打包带走，其余领取方式见页尾。",
   groups: [
     {
       name: "订单来了 AI 工作台技能社区",
@@ -473,8 +473,8 @@ export const skillsConfig: SkillsConfig = {
       ],
     },
     {
-      name: "世鑫运营自用 Skill",
-      note: "日常运营效率工具 · 可直接下载",
+      name: "世鑫运营实战 Skill",
+      note: "一线运营实战工具 · 可直接下载",
       categories: [
         {
           name: "民宿经营",
@@ -555,6 +555,42 @@ export const skillsConfig: SkillsConfig = {
               doc: "/skill/gpt-image-2",
               author: "ConardLi 创作",
             },
+            {
+              title: "社交卡片图文生成",
+              tag: "图文排版",
+              desc: "文章一键变成小红书图文组卡 + 公众号封面对。",
+              hue: "linear-gradient(135deg,#be185d,#f9a8d4)",
+              download: "/skills/guizang-social-card.zip",
+              doc: "/skill/guizang-social-card",
+              author: "归藏（op7418）创作",
+            },
+            {
+              title: "公众号文章一键发布",
+              tag: "私域运营",
+              desc: "Markdown 文章直接进公众号草稿箱，排版不丢。",
+              hue: "linear-gradient(135deg,#16a34a,#86efac)",
+              download: "/skills/wechat-article-publisher.zip",
+              doc: "/skill/wechat-article-publisher",
+              author: "开源社区 · MIT 协议",
+            },
+            {
+              title: "精美网页文章",
+              tag: "网页排版",
+              desc: "把文章、PDF、链接变成可分享的精美单页网页长文。",
+              hue: "linear-gradient(135deg,#334155,#94a3b8)",
+              download: "/skills/beautiful-article.zip",
+              doc: "/skill/beautiful-article",
+              author: "ConardLi 创作",
+            },
+            {
+              title: "网页视频演示",
+              tag: "视频演示",
+              desc: "把口播稿变成有电影感的网页视频演示，录屏即大片。",
+              hue: "linear-gradient(135deg,#065f46,#6ee7b7)",
+              download: "/skills/web-video-presentation.zip",
+              doc: "/skill/web-video-presentation",
+              author: "ConardLi 创作",
+            },
           ],
         },
         {
@@ -581,58 +617,6 @@ export const skillsConfig: SkillsConfig = {
               tag: "私域运营",
               desc: "蒸馏 645 篇爆款文章，批量生成高点击标题。",
               hue: "linear-gradient(135deg,#16a34a,#86efac)",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: "社区精选 · 开源收录",
-      note: "原作者署名分享 · 感谢开源",
-      categories: [
-        {
-          name: "图文与发布",
-          items: [
-            {
-              title: "社交卡片图文生成",
-              tag: "图文排版",
-              desc: "文章一键变成小红书图文组卡 + 公众号封面对。",
-              hue: "linear-gradient(135deg,#be185d,#f9a8d4)",
-              download: "/skills/guizang-social-card.zip",
-              doc: "/skill/guizang-social-card",
-              author: "归藏（op7418）创作",
-            },
-            {
-              title: "公众号文章一键发布",
-              tag: "私域运营",
-              desc: "Markdown 文章直接进公众号草稿箱，排版不丢。",
-              hue: "linear-gradient(135deg,#16a34a,#86efac)",
-              download: "/skills/wechat-article-publisher.zip",
-              doc: "/skill/wechat-article-publisher",
-              author: "开源社区 · MIT 协议",
-            },
-          ],
-        },
-        {
-          name: "设计与演示",
-          items: [
-            {
-              title: "精美网页文章",
-              tag: "网页排版",
-              desc: "把文章、PDF、链接变成可分享的精美单页网页长文。",
-              hue: "linear-gradient(135deg,#334155,#94a3b8)",
-              download: "/skills/beautiful-article.zip",
-              doc: "/skill/beautiful-article",
-              author: "ConardLi 创作",
-            },
-            {
-              title: "网页视频演示",
-              tag: "视频演示",
-              desc: "把口播稿变成有电影感的网页视频演示，录屏即大片。",
-              hue: "linear-gradient(135deg,#065f46,#6ee7b7)",
-              download: "/skills/web-video-presentation.zip",
-              doc: "/skill/web-video-presentation",
-              author: "ConardLi 创作",
             },
             {
               title: "知识库检索助手",
