@@ -529,6 +529,24 @@ export const skillsConfig: SkillsConfig = {
           name: "民宿经营打法",
           items: [
             {
+              title: "差评危机公关",
+              tag: "点评管理",
+              desc: "差评分级、回复草稿、整改派单，24 小时闭环不过夜。",
+              hue: "linear-gradient(135deg,#b91c1c,#fca5a5)",
+              download: "/skills/hotel-review-crisis.zip",
+              doc: "/skill/hotel-review-crisis",
+              author: "WorkLoom 创作",
+            },
+            {
+              title: "价格日历矩阵",
+              tag: "定价收益",
+              desc: "房型×渠道×90 天价格一张表，节假日调价有纪律。",
+              hue: "linear-gradient(135deg,#b45309,#fcd34d)",
+              download: "/skills/hotel-pricing-matrix.zip",
+              doc: "/skill/hotel-pricing-matrix",
+              author: "WorkLoom 创作",
+            },
+            {
               title: "民宿图片风格迁移",
               tag: "视觉优化",
               desc: "给一个参考民宿链接 + 自己的原图，把高级风格迁到自己图上。",
