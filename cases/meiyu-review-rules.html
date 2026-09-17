@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>湄屿宿集 · 全域平台点评规则与好评技巧培训</title>
+<style>
+:root{
+
+  /* ===== 张世鑫AI 品牌 VI · 核心令牌 =====
+     唯一真源：张世鑫个人网站/design-tokens/zhangshixin-ai.tokens.json
+     蓝点 / 蓝 / 墨 / 灰 / 底 / 标签底 / 三色团 = VI 手册 v1.0 定稿值 */
+  --blue:#3B5BFD; --blue-deep:#2440D6;
+  --ink:#111318; --gray:#6B7280; --bg:#F6F7F9; --chip:#EAF0FF; --white:#FFFFFF;
+  --blob-b:#A8C6FF; --blob-l:#DCD2FA; --blob-o:#F5C892;
+
+  /* ===== VI「课件 / 网页」扩展模块 v1.0（2026-09-17 补登）=====
+     VI 手册 v1.0 只覆盖封面与背景图，未定义网页场景的
+     ① 边框色 ② 三级文字 ③ 卡片面 ④ 功能色（禁止/推荐/注意）。
+     此处按《治理纪律·第1条》补登，待并入 VI 手册 v1.1。 */
+  --surface:#FFFFFF; --line:#E5E7EB; --gray2:#9CA3AF;
+  --red:#D93F4C;   --red-bg:#FEF1F2;   --red-line:#F7C9CE;
+  --green:#0E9F6E; --green-bg:#ECFAF4; --green-line:#BDE9D6;
+  --amber:#B26B00; --amber-bg:#FFF6E8; --amber-line:#F5D9A8;
+
+  /* 字体：VI 规定中文 MiSans、英文数字 JetBrains Mono。
+     多数设备未安装，故补完整降级栈——装了自动生效，不装优雅降级。 */
+  --font-cn:'MiSans','PingFang SC','Hiragino Sans GB','Microsoft YaHei',
+            -apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  /* 旧变量名别名：VI 化时统一改名，保留别名以兼容正文内联样式 */
+  /* 已收敛为 VI 规范令牌名，旧别名全部退役 */
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);line-height:1.78;
+  font-family:var(--font-cn);-webkit-font-smoothing:antialiased;font-size:16px;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+
+.dot{display:inline-block;width:.30em;height:.30em;border-radius:50%;
+  background:var(--blue);vertical-align:middle;margin:0 .05em;
+  flex:0 0 auto}
+
+/* ---------- VI 品牌签名（不许改） ---------- */
+.brandbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.brandbar .bn{display:inline-flex;align-items:center;font-size:15px;font-weight:800;
+  color:var(--ink);letter-spacing:-.01em}
+.brandbar .bn .dot{width:8px;height:8px}
+.brandbar .bt2{font-size:12.5px;color:var(--gray);letter-spacing:.04em;
+  padding-left:12px;border-left:1px solid var(--line)}
+.fsig{font-size:19px;font-weight:800;color:var(--ink);margin:0 0 7px;letter-spacing:-.01em;
+  display:flex;align-items:center;justify-content:center;gap:2px}
+.fsig .dot{width:7px;height:7px}
+.fmotto{color:var(--blue);font-weight:700;font-size:13.5px;margin:0 0 5px}
+.fhandle{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;
+  color:var(--gray2);margin:0 0 16px;text-transform:none}
+
+/* ---------- HERO（VI B 版骨架：浅底 + 柔焦色团 + 蓝点） ---------- */
+.hero{position:relative;overflow:hidden;background:var(--bg);
+  padding:52px 0 50px;border-bottom:1px solid var(--line)}
+.blob{position:absolute;border-radius:50%;pointer-events:none;z-index:0}
+.b1{width:540px;height:540px;top:-200px;right:-140px;
+  background:radial-gradient(circle,var(--blob-b) 0%,transparent 70%);opacity:.85}
+.b2{width:430px;height:430px;bottom:-190px;left:-150px;
+  background:radial-gradient(circle,var(--blob-l) 0%,transparent 70%);opacity:.8}
+.b3{width:240px;height:240px;top:34px;right:300px;
+  background:radial-gradient(circle,var(--blob-o) 0%,transparent 70%);opacity:.5}
+.hero .wrap{position:relative;z-index:2}
+.kicker{
+  display:inline-block;font-family:var(--font-mono);font-size:11.5px;
+  letter-spacing:.2em;color:var(--blue);background:var(--chip);
+  padding:6px 15px;border-radius:999px;font-weight:700;
+}
+.hero h1{margin:18px 0 12px;font-size:clamp(27px,4.7vw,43px);line-height:1.22;
+  font-weight:800;letter-spacing:-.015em;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero .sub{font-size:clamp(14px,2vw,17px);color:var(--gray);max-width:740px;margin:0}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:9px}
+.meta span{font-size:13px;background:var(--chip);color:var(--blue);
+  padding:6px 14px;border-radius:999px;font-weight:600}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;background:var(--bg);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 18px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{
+  flex:0 0 auto;font-size:13.5px;color:var(--gray);text-decoration:none;
+  padding:7px 13px;border-radius:999px;white-space:nowrap;border:1px solid transparent;
+}
+nav a:hover{background:var(--white);border-color:var(--line);color:var(--blue)}
+
+/* ---------- SECTION ---------- */
+section{padding:52px 0 8px}
+.sec-h{display:flex;align-items:flex-start;gap:14px;margin-bottom:8px}
+.sec-n{
+  flex:0 0 auto;width:46px;height:46px;border-radius:13px;
+  background:var(--blue);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;
+  box-shadow:0 6px 18px rgba(59,91,253,.26);
+}
+.sec-h h2{margin:0;font-size:clamp(20px,3vw,26px);line-height:1.35;
+  letter-spacing:-.01em;font-weight:800}
+.sec-h p{margin:6px 0 0;color:var(--gray);font-size:14px}
+h3{margin:32px 0 12px;font-size:18.5px;color:var(--ink);font-weight:800;
+   padding-left:13px;border-left:4px solid var(--blue);line-height:1.4}
+h4{margin:22px 0 8px;font-size:16px;color:var(--ink)}
+p{margin:10px 0}
+
+/* ---------- CARD ---------- */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:20px 22px;margin:14px 0;box-shadow:0 2px 10px rgba(17,19,24,.04);
+}
+.card.tight{padding:16px 18px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+
+/* ---------- TABLE ---------- */
+.tscroll{overflow-x:auto;margin:14px 0;border:1px solid var(--line);
+  border-radius:var(--r);background:var(--white);-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--chip);font-weight:700;color:var(--blue);white-space:nowrap;font-size:13.5px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#FAFBFF}
+td strong{color:var(--blue)}
+.plat{font-weight:700;color:var(--ink);white-space:nowrap}
+
+/* ---------- BADGE / CALLOUT ---------- */
+.badge{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;
+  font-weight:600;vertical-align:middle;margin-left:6px;line-height:1.7}
+.b-red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-line)}
+.b-orange{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-line)}
+.b-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-line)}
+.b-blue{background:var(--chip);color:var(--blue);border:1px solid #D3DEFF}
+.b-gray{background:#F3F4F6;color:var(--gray);border:1px solid var(--line)}
+
+.callout{border-radius:12px;padding:15px 18px;margin:14px 0;border-left:5px solid;font-size:14.5px}
+.c-danger{background:var(--red-bg);border-color:var(--red)}
+.c-warn{background:var(--amber-bg);border-color:var(--amber-line)}
+.c-ok{background:var(--green-bg);border-color:var(--green)}
+.c-info{background:var(--chip);border-color:var(--blue)}
+.c-danger b{color:var(--red)}
+.c-ok b{color:var(--green)}
+.c-info b{color:var(--blue)}
+.callout .ttl{display:block;font-weight:700;margin-bottom:5px;font-size:15px}
+
+/* ---------- TABS ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 0}
+.tab{
+  font-size:14px;padding:8px 16px;border-radius:99px;cursor:pointer;user-select:none;
+  background:var(--white);border:1px solid var(--line);color:var(--gray);transition:.18s;
+  font-family:inherit;
+}
+.tab:hover{border-color:var(--blue);color:var(--blue)}
+.tab.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.panel{display:none}
+.panel.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ---------- ACCORDION ---------- */
+details{background:var(--white);border:1px solid var(--line);border-radius:12px;
+  margin:10px 0;overflow:hidden}
+details[open]{box-shadow:0 3px 14px rgba(17,19,24,.06)}
+summary{padding:13px 18px;cursor:pointer;font-weight:700;font-size:15px;color:var(--ink);
+  list-style:none;display:flex;align-items:center;gap:9px}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"+";font-size:17px;color:var(--blue);font-weight:800;width:14px;flex:0 0 auto}
+details[open] summary:before{content:"-"}
+details .dbody{padding:2px 18px 18px;border-top:1px solid var(--line);font-size:14.5px}
+
+/* ---------- LISTS ---------- */
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:6px 0}
+ul.ck{list-style:none;padding-left:0}
+ul.ck li{position:relative;padding-left:26px}
+ul.ck li:before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:800}
+ul.x{list-style:none;padding-left:0}
+ul.x li{position:relative;padding-left:26px}
+ul.x li:before{content:"✕";position:absolute;left:0;top:0;color:var(--red);font-weight:800}
+
+/* ---------- SCRIPT / COPY ---------- */
+.script{background:#FAFBFF;border:1px dashed #D3DEFF;border-radius:12px;
+  padding:14px 16px;margin:12px 0;position:relative}
+.script .txt{margin:0;white-space:pre-wrap;font-size:14.5px;color:var(--ink)}
+.script .note{display:block;margin-top:9px;font-size:12.5px;color:var(--gray);
+  border-top:1px dashed var(--line);padding-top:8px}
+.copy{
+  position:absolute;top:10px;right:10px;font-size:12.5px;padding:5px 12px;
+  border-radius:99px;border:1px solid var(--line);background:var(--white);color:var(--blue);
+  cursor:pointer;font-weight:700;transition:.16s;font-family:inherit;
+}
+.copy:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.copy.done{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* ---------- TOOL（VI 深色场景 = 蓝底 · 白字 + #A8C6FF 点缀） ---------- */
+.tool{background:linear-gradient(150deg,var(--blue-deep),var(--blue));border-radius:var(--r);
+  padding:20px 22px;color:#fff;margin:18px 0}
+.tool h4{color:#fff;margin:0 0 4px;font-size:17px}
+.tool .hint{font-size:13px;color:var(--blob-b);margin:0 0 15px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px}
+.field label{display:block;font-size:12.5px;color:#DCE4FF;margin-bottom:5px}
+.field input{
+  width:100%;padding:10px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.34);
+  background:rgba(255,255,255,.14);color:#fff;font-size:15px;font-family:var(--font-cn);
+}
+.field input:focus{outline:none;border-color:var(--blob-b);background:rgba(255,255,255,.24)}
+.btn{
+  margin-top:14px;padding:11px 26px;border-radius:99px;border:none;cursor:pointer;
+  background:#fff;color:var(--blue-deep);font-size:15px;font-weight:800;font-family:var(--font-cn);
+  transition:.18s;box-shadow:0 5px 18px rgba(8,14,60,.28);
+}
+.btn:hover{background:var(--blob-b);color:var(--blue-deep);transform:translateY(-1px)}
+.out{margin-top:16px;background:rgba(10,16,60,.30);border-radius:11px;padding:15px 17px;
+  font-size:14.5px;line-height:2}
+.out .k{color:#C9D4F5}
+.out .v{font-weight:800;color:#fff;font-size:17px}
+.out .warn{color:#FFB3B8;font-weight:700}
+.out .good{color:#7FE3C0;font-weight:700}
+
+/* ---------- QUIZ ---------- */
+.quiz{background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;margin:12px 0}
+.quiz .q{font-weight:700;margin:0 0 10px;font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:#FAFBFF;
+  cursor:pointer;font-size:14px;transition:.16s;font-family:inherit;color:var(--ink)}
+.opt:hover{border-color:var(--blue)}
+.opt.right{background:var(--green-bg);border-color:var(--green);color:var(--green);font-weight:700}
+.opt.wrong{background:var(--red-bg);border-color:var(--red);color:var(--red)}
+.ans{display:none;margin-top:11px;font-size:13.8px;color:var(--ink);
+  background:var(--chip);border-radius:9px;padding:11px 13px}
+.ans.show{display:block}
+
+/* ---------- MISC ---------- */
+.hl{background:linear-gradient(transparent 58%,#D3DEFF 58%);font-weight:700}
+.mono{font-family:var(--font-mono);font-size:13.5px}
+footer{margin-top:64px;padding:34px 0 48px;border-top:1px solid var(--line);
+  color:var(--gray);font-size:13px;text-align:center}
+footer strong{color:var(--ink)}
+.totop{position:fixed;right:18px;bottom:22px;width:44px;height:44px;border-radius:50%;
+  background:var(--blue);color:#fff;border:none;cursor:pointer;font-size:19px;
+  box-shadow:0 6px 18px rgba(59,91,253,.34);display:none;z-index:60}
+.totop.show{display:block}
+
+/* ---------- PRINT ---------- */
+@media print{
+  nav,.totop,.copy{display:none!important}
+  body{background:#fff;font-size:11pt}
+  .hero{background:#fff!important;border-bottom:1px solid #ddd;padding:22px 0}
+  .blob{display:none!important}
+  section{page-break-inside:avoid;padding:22px 0 4px}
+  .panel{display:block!important}
+  details{border:none}
+  details .dbody{display:block!important}
+  .tool{background:#fff!important;color:#111318!important;border:1px solid #ccc}
+  .tool h4,.tool .hint{color:#111318!important}
+  .tool .field label{color:#555!important}
+  .tool .field input{background:#fff!important;color:#111318!important;border:1px solid #ccc}
+  .out{background:#F1F5FF!important}
+  .out .k,.out .v,.out .warn,.out .good{color:#111318!important}
+  a{color:#111318;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="wrap">
+    <div class="brandbar">
+      <span class="bn">张世鑫<span class="dot"></span>AI</span>
+      <span class="bt2">酒店民宿 AI 实战派</span>
+    </div>
+    <span class="kicker">INTERNAL TRAINING / 2026.09</span>
+    <h1>全域平台<em>点评规则</em>解读<br>与<em>好评获取</em>合规技巧</h1>
+    <p class="sub">携程系 · 飞猪 · 小红书 · 抖音 · <b>AI 板块</b> —— 一次讲透「规则怎么算分」「好评怎么要」和「AI 入口怎么被推荐」。</p>
+    <div class="meta">
+      <span>培训对象：湄屿宿集各门店店长 / 前厅 / 运营</span>
+      <span>编制：2026-09-17</span>
+      <span>适用周期：2026 年 9 月版</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#ch1">一 · 规则总览</a>
+    <a href="#ch2">二 · 携程系详解</a>
+    <a href="#ch3">三 · 小红书</a>
+    <a href="#ch4">四 · 抖音</a>
+    <a href="#ch5ai">五 · AI 板块与 GEO</a>
+    <a href="#ch6">六 · 好评技巧与小技巧</a>
+    <a href="#ch7">七 · 合规红线</a>
+    <a href="#apx">附录 · 速查与小测</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ========== 第一章 ========== -->
+<section id="ch1">
+  <div class="sec-h">
+    <div class="sec-n">一</div>
+    <div>
+      <h2>六大平台点评规则总览</h2>
+      <p>先建立全局坐标系：同一个客人、同一次入住，在不同平台的"记分方式"完全不同。</p>
+    </div>
+  </div>
+
+  <div class="callout c-info">
+    <span class="ttl">本期口径说明</span>
+    按公司既有「六大平台」框架展开，本期培训覆盖：
+    <b>携程系（携程 / 去哪儿 / 同程 / 智行）+ 飞猪 + 小红书 + 抖音 + AI 板块</b>。
+    美团系本期不展开。<br>
+    飞猪：<b>规则本期讲透（第一章）</b>，实操动作 <b>国庆后启动</b>。<br>
+    <b>AI 板块</b>为本期新增（<b>第五章</b>）——豆包、小红书「点点」、微信指数与微信 AI「小微」，<b>时效性最强，建议重点讲</b>。
+  </div>
+
+  <h3>1.1 全景对照大表</h3>
+  <p style="font-size:14px;color:var(--gray)">表格可左右滑动 →</p>
+
+  <div class="tscroll">
+  <table>
+    <thead>
+      <tr>
+        <th>平台</th><th>点评窗口</th><th>改 / 删 / 追评</th>
+        <th>计分范围与逻辑</th><th>展示与门槛</th><th>关键提醒</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="plat">携程</td>
+        <td>离店日 <b>14:00 后</b>开放<br>离店后 <b>90 天内</b></td>
+        <td>不可修改<br>不可删除<br>可追评 1 次（90 天内）</td>
+        <td>近 <b>3 年</b>有效点评<br>自有点评 ≥5 条 → 只用自有计分<br>&lt;5 条 → 融合第三方综合分<br>按 <b>新鲜度 + 可信度</b>加权平均</td>
+        <td>外网展示 1 位小数，<b>向下取整</b>（4.79→4.7）<br>≥4.7 显示"超棒"、≥4.5"很好"<br>自有 &lt;40 条时引入第三方（<b>仅展示不计分</b>）</td>
+        <td>差评删不掉；违规点评分打折，一直跟到该条点评自然过期（3 年）</td>
+      </tr>
+      <tr>
+        <td class="plat">去哪儿</td>
+        <td>入住日 <b>14:00 后</b>开放<br>90 天内可提交</td>
+        <td><b>仅 1 次修改</b><br>不支持追评</td>
+        <td>近 3 年去哪儿展示的<b>全部</b>点评<br><b>每条点评都计分</b>（按订单数）<br>钟点房点评<b>也正常计分</b></td>
+        <td>2024/8/28 起接入近 3 年第三方点评（权重低，更多用于展示）</td>
+        <td>与携程点评同步；一条订单一次点评机会</td>
+      </tr>
+      <tr>
+        <td class="plat">同程</td>
+        <td>离店日 14:00 后<br><b>入住日起 180 天内</b>（窗口最长）</td>
+        <td>不可修改<br>不可删除<br>不支持追评</td>
+        <td>近 3 年：同程自有 + 接入的携程点评 + 第三方<br>点评分按每日新增点评更新</td>
+        <td>2025/7/1 起由"向上取整"改为 <b>向下取整保留 1 位</b></td>
+        <td>平台有<b>里程奖励</b>，可用于引导客人写长文 + 多图</td>
+      </tr>
+      <tr>
+        <td class="plat">智行</td>
+        <td>离店日 14:00 后<br>90 天内</td>
+        <td>不可修改<br>不可删除<br>不支持追评</td>
+        <td>展示的是 <b>智行 + 携程融合分</b>，不是独立渠道分</td>
+        <td>前端展示携程 + 智行 + 分销渠道<b>全部</b>点评</td>
+        <td>无独立运营动作，跟随携程结果</td>
+      </tr>
+      <tr>
+        <td class="plat">飞猪<span class="badge b-orange">国庆后启动</span></td>
+        <td>离店当天 <b>14:00</b> 开放<br>离店后第 <b>90 天 24:00</b> 关闭</td>
+        <td>客人不可修改、不可删除<br>商家 <b>180 天内可回评</b>，回复后 1 周内可改 1 次<br>仅预付订单有追评入口</td>
+        <td>近 <b>2 年</b>有效点评<br><b>≥5 条才开始计分</b>（不足 5 条不计分）<br>四项单项取平均：位置 / 清洁 / 服务 / 设施<br>钟点房评分<b>不参与</b>计算</td>
+        <td><b>匿名评价</b>：商家与小二都查不到评价关联的订单</td>
+        <td>未实际入住的订单不开放评价；高德下单的评价<b>不会在飞猪展示</b></td>
+      </tr>
+      <tr>
+        <td class="plat">小红书</td>
+        <td>POI 门店页点评：<b>持续累积</b><br>交易评价：交易成功后 90 天内</td>
+        <td>不可修改<br>无追评机制</td>
+        <td><b>无传统加权平均分</b><br>POI 门店页评价 = 社区笔记 + 评论聚合<br>店铺服务分基于近 180 天交易数据（5 分制，最低 3 分）</td>
+        <td>店铺服务分每天 <b>15:00 前</b>更新<br>新店前 30 天不显示评分<br>2026 本地生活搜索：<b>POI 近 30 天评价数 + 含图率权重约 40%</b></td>
+        <td>2026 分发逻辑已从"点赞收藏"转为 <b>"真实到店 + 评价闭环"双权重</b></td>
+      </tr>
+      <tr>
+        <td class="plat">抖音</td>
+        <td>团购：订单完成后 <b>15 天内</b>首次评价<br><b>180 天内</b>可追评<br>生活服务订单完成 90 天内可评价</td>
+        <td>不可修改<br>每条评价商家<b>最多回复 1 次</b></td>
+        <td><b>只有首次评价计分，追评不计</b><br>以评价数 / 好评率为基础算分<br>每日按 <b>T-1</b> 更新<br>历史评价随时间<b>衰减</b>，不新增就掉分</td>
+        <td>需累计过审评价达到门槛才展示评分<br>同人反复写评<b>只计一次</b></td>
+        <td><b>未关联订单的评价会被限制曝光</b>；到店消费后评价可信度最高</td>
+      </tr>
+      <tr>
+        <td class="plat">AI 板块<span class="badge b-blue">本期新增</span></td>
+        <td>没有"点评窗口"概念<br>内容<b>随时</b>可被 AI 抓取与引用</td>
+        <td>不适用<br>（这不是评价体系，是<b>推荐体系</b>）</td>
+        <td>AI 基于公开信息生成推荐：<b>点评、笔记、公众号文章、门店信息</b>都是信源<br><b>没有权重公式可钻，靠内容的一致性与可信度</b></td>
+        <td>AI 答案对被推荐方做<b>标注与溯源</b><br>豆包渠道成交后收约 <b>12%</b></td>
+        <td><b>推荐位不卖</b>——付费不能影响推荐或排序，只能靠"被 AI 认识" <span class="badge b-blue">详见第五章</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>1.2 分平台速览卡</h3>
+  <div class="tabs" data-tabs>
+    <div class="tab on" data-tab="t1">携程系</div>
+    <div class="tab" data-tab="t2">飞猪</div>
+    <div class="tab" data-tab="t3">小红书</div>
+    <div class="tab" data-tab="t4">抖音</div>
+  </div>
+
+  <div class="panel on" id="t1">
+    <div class="card">
+      <h4>携程系一句话画像</h4>
+      <p><b>考试打分制。</b>分数是硬通货，直接影响流量排序、标签外露、挂牌资格、PSI 得分。分数一旦被扣，跟着点评走三年。</p>
+      <div class="grid g2">
+        <div>
+          <p style="margin:0 0 6px"><b style="color:var(--green)">最该记住的三条</b></p>
+          <ul>
+            <li>外网分<b>向下取整</b>：4.79 显示为 <b>4.7</b>，差 0.01 就掉一档</li>
+            <li>差评<b>删不掉</b>、客人<b>改不了</b>（2020/7/1 起）</li>
+            <li>近 30 天点评的权重明显更高，<b>时间衰减</b>是真实存在的</li>
+          </ul>
+        </div>
+        <div>
+          <p style="margin:0 0 6px"><b style="color:var(--blue)">容易忽略的三条</b></p>
+          <ul>
+            <li>同用户同酒店半年内多条点评，<b>最多只留 2 条</b>计分</li>
+            <li>自有 &lt;40 条会引入第三方点评，但<b>只展示不计分</b></li>
+            <li>装修前历史点评可申请处理，会同步到同程、去哪儿</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="t2">
+    <div class="card">
+      <h4>飞猪一句话画像 <span class="badge b-orange">规则先懂，国庆后动手</span></h4>
+      <p><b>MCI 指数制。</b>评价不只看分，还看"你回不回"。回复率高本身就是加分项——这是全平台里性价比最高的动作。</p>
+      <div class="tscroll" style="margin-top:12px">
+      <table style="min-width:620px">
+        <thead><tr><th>MCI 评价相关项</th><th>评分档位</th></tr></thead>
+        <tbody>
+          <tr><td>用户点评分</td><td>5.0 分 → <b>满 5 分</b>｜<b>4.9 分 → 只剩 4 分</b>｜4.8 → 3 分｜4.7 → 2 分｜&lt;4.7 → 0 分</td></tr>
+          <tr><td>低分评价回复率</td><td>100% → <b>满 5 分</b>｜≥90% → 3 分｜&lt;90% → 0 分</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="callout c-ok" style="margin-top:14px">
+        <span class="ttl">为什么说"回复率高"是白送的分</span>
+        点评分从 4.9 冲到 5.0 很难，但<b>把每一条低分评价都回复到 100%</b> 只是执行力问题——回一条就有分，不回的代价是一整个 5 分档位。
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="t3">
+    <div class="card">
+      <h4>小红书一句话画像</h4>
+      <p><b>搜索口碑制。</b>客人搜"湄洲岛民宿"能看到什么，就是你的成绩单。它不是"打分"，是"把社区里的口碑聚合到门店页"。</p>
+      <p style="margin-top:12px"><b>两层评价体系</b></p>
+      <div class="grid g2">
+        <div class="card tight" style="margin:0">
+          <p style="margin:0 0 6px"><b style="color:var(--blue)">第一层 · POI 门店页点评</b></p>
+          <p style="margin:0;font-size:14px">官方叫「精选门店」。本质是把用户在<b>笔记和评论</b>里留下的口碑，聚合成一个像大众点评一样的门店页。<b>这是民宿最该主攻的战场。</b></p>
+        </div>
+        <div class="card tight" style="margin:0">
+          <p style="margin:0 0 6px"><b style="color:var(--gray)">第二层 · 交易评价（店铺服务分）</b></p>
+          <p style="margin:0;font-size:14px">基于真实交易，交易成功后 90 天内评价；5 分制最低 3 分，每天 15:00 前更新。<b>咱们下单量还小，本期不作重点，但要建档跟踪。</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="t4">
+    <div class="card">
+      <h4>抖音一句话画像</h4>
+      <p><b>到店闭环制。</b>只有真实到店消费后的评价才真正有效；未关联订单的评价连曝光都会被限制。评价还会随时间衰减——<b>不新增就掉分</b>。</p>
+      <div class="callout c-warn" style="margin-top:14px">
+        <span class="ttl">2026 年 9 月 16 日新规（就在昨天）</span>
+        平台全面叫停八类"操纵评价"行为，<b>代写代发即使消费者本人同意也算违规</b>；处罚为 <b>评分不展示 + "吃喝玩乐榜"下榜</b>，首次 7 天、再次 14 天、21 天、30 天递增。详见第四章。
+      </div>
+    </div>
+  </div>
+
+  <h3>1.3 三个必须刻进肌肉记忆的差异点</h3>
+  <div class="grid g3">
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b>① 取整方向不一样</b></p>
+      <p style="margin:0;font-size:14px">携程、同程都是<b>向下取整</b>。4.79 和 4.80 在外网是两个数——"差一点"就是真的差一档，没有四舍五入的运气。</p>
+    </div>
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b>② 时间窗长短差 6 倍</b></p>
+      <p style="margin:0;font-size:14px">携程 90 天、同程 <b>180 天</b>、抖音首次评价只有 <b>15 天</b>。抖音是最容易"错过就没了"的平台。</p>
+    </div>
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b>③ 新鲜度就是权重</b></p>
+      <p style="margin:0;font-size:14px">各平台都在算"新鲜度"。<b>每天稳定来 1–2 条</b>，比一次性冲 30 条更有效——突击式集中好评容易被系统识别为异常。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第二章 ========== -->
+<section id="ch2">
+  <div class="sec-h">
+    <div class="sec-n">二</div>
+    <div>
+      <h2>携程系规则详解</h2>
+      <p>流量主力平台，规则也最细。这一章讲透"分是怎么算出来的"。</p>
+    </div>
+  </div>
+
+  <h3>2.1 携程基础规则</h3>
+  <div class="tscroll">
+  <table style="min-width:640px">
+    <thead><tr><th>项目</th><th>规则</th></tr></thead>
+    <tbody>
+      <tr><td>点评构成</td><td>环境 / 设施 / 服务 / 卫生 <b>四项</b>，每项 0.5–5 分；单条点评分 = 四项平均</td></tr>
+      <tr><td>点评形式</td><td>文字 + 图片 + 视频（三者分属<b>独立审核链路</b>）</td></tr>
+      <tr><td>开放时间</td><td>Ctrip：离店日 <b>14:00 后</b>｜Trip：离店日 00:00 后</td></tr>
+      <tr><td>截止时间</td><td>离店后 <b>90 天内</b>；追评同窗口，<b>每条点评限 1 次</b></td></tr>
+      <tr><td>修改 / 删除</td><td>提交即锁定，<b>用户无法修改和删除</b></td></tr>
+      <tr><td>审核时效</td><td>通常 <b>1–2 个工作日</b>；文字违规则整条不展示，图片违规只剔除图片</td></tr>
+      <tr><td>不能点评的情形</td><td>离店日 14:00 前 / 超过 90 天 / 订单未成交 / 现付订单酒店未审核入住 / 职业差评师账户</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>2.2 分是怎么算出来的</h3>
+  <div class="card">
+    <p><b style="color:var(--red)">核心认知：加权平均 ≠ 算术平均。</b>一条近期、内容详实、可信度高的点评，权重可能远高于一条三年前、只有一句"不错"的五星。</p>
+    <div class="grid g2" style="margin-top:12px">
+      <div>
+        <p style="margin:0 0 6px"><b>计分范围</b></p>
+        <ul>
+          <li>近 <b>3 年</b>内的有效点评（过期不展示、不计分）</li>
+          <li>必须<b>审核通过</b></li>
+          <li>自有点评 <b>≥5 条</b>：只用携程自有点评计分</li>
+          <li>自有点评 <b>&lt;5 条</b>：融合第三方综合分</li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><b>权重看什么</b></p>
+        <ul>
+          <li><b>新鲜度</b>：入住时间越近，权重越高</li>
+          <li><b>可信度</b>：用户经验值、用户可信度、内容真实度</li>
+          <li>会员等级高、点评等级高的客人，点评权重相对更高</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout c-danger" style="margin-top:14px">
+      <span class="ttl">权重直接归零的情形</span>
+      同用户同酒店的重复点评 · 点评内容抄袭 / 雷同 · 非真实入住体验 · 钟点房点评 · 诱导好评
+    </div>
+  </div>
+
+  <h3>2.3 同一客人给了多条点评，怎么算？</h3>
+  <p>这是最容易被一线同事误解的一条（2023/8/14 修订后口径）：</p>
+  <div class="tscroll">
+  <table style="min-width:680px">
+    <thead><tr><th>半年内同一客人在同一家店的多条点评</th><th>保留结果</th></tr></thead>
+    <tbody>
+      <tr><td>既有 <b>≥3 分</b> 又有 <b>&lt;3 分</b>（意见有差异性）</td><td>保留 <b>2 条</b>：≥3 分里最新入住的一条 + &lt;3 分里最新入住的一条</td></tr>
+      <tr><td>全部 <b>≥3 分</b></td><td>只保留<b>最新入住</b>的 1 条</td></tr>
+      <tr><td>全部 <b>&lt;3 分</b></td><td>只保留<b>最新入住</b>的 1 条</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout c-info">
+    <span class="ttl">一句话翻译给一线听</span>
+    <b>全是好评只留一条；全是差评也只留一条；好评差评都有的，两条都留着。</b>分割线是 3 分。<br>
+    —— 所以"让客人补一条好评把差评盖掉"这个老办法，现在已经失效了，差评还会挂在上面。
+  </div>
+
+  <h3>2.4 展示与折叠：为什么点评"变少了"</h3>
+  <div class="grid g2">
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b style="color:var(--red)">会被折叠／不展示的点评</b></p>
+      <ul style="font-size:14px">
+        <li>与入住体验无关的内容</li>
+        <li>入住体验不完整的点评</li>
+        <li>内容相似的点评、同一用户多次点评</li>
+        <li>酒店装修前的历史点评</li>
+        <li>点评分与内容明显不符</li>
+        <li>超过 3 年有效期、虚假或违规内容</li>
+      </ul>
+    </div>
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b style="color:var(--green)">排序受什么影响</b></p>
+      <p style="font-size:14px;margin:0 0 8px">系统按<b>入住时间、点评质量、点评真实性</b>综合计算排序。<b>点评时间越新、内容越丰富，排序越靠前。</b></p>
+      <p style="font-size:14px;margin:0"><b>对策</b>：持续产生"新鲜、图文并茂、内容真实"的好评，自然的做法是把旧的负面点评挤到后面——这比纠结怎么删差评有用得多。</p>
+    </div>
+  </div>
+
+  <h3>2.5 分数标签与硬门槛</h3>
+  <div class="tscroll">
+  <table style="min-width:640px">
+    <thead><tr><th>项目</th><th>门槛</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td>点评描述标签</td><td><b>≥4.7 分 →"超棒"</b>｜≥4.5 分 →"很好"</td><td>标签在列表页、详情页明显外露，直接影响点击率</td></tr>
+      <tr><td>PSI 服务质量分</td><td>「点评竞争指数」权重 <b>10%</b>，点评分 <b>≥4.7 得满分 5 分</b></td><td>影响整体 PSI 分数</td></tr>
+      <tr><td>挂牌资格</td><td>点评分 <b>≥4.0</b></td><td>不达标无法挂牌</td></tr>
+      <tr><td>优享会专属标签</td><td>PSI &lt;3 分 或 点评分 &lt;4 分</td><td>专属标签会<b>暂时下线</b>，达标后次日恢复</td></tr>
+      <tr><td>搜索结果筛选</td><td>"4.7 分以上 / 4.5 分以上 / 4.0 分以上"</td><td>没跨过档位，客人筛选时<b>直接看不到你</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>2.6 违规红线（携程官方原文口径）</h3>
+  <div class="callout c-danger">
+    <span class="ttl">「受利益干扰的点评」—— 最容易被忽略、也最容易踩的一条</span>
+    官方定义为：受酒店利益交换，为了获得利益（<b>包括但不限于接受金钱、免费餐食、礼品、折扣等</b>）所写的点评。<br>
+    官方举的例子就是：<b>「写好评送早餐」「写好评升级房型」</b>。
+  </div>
+
+  <h4>同一章节还明确禁止这些行为</h4>
+  <ul class="x">
+    <li><b>酒店查验用户写评结果</b>（拍摄用户点评、索要点评截图等）</li>
+    <li><b>使用酒店提供的点评内容</b>（图片、文字、模板等）所写的点评 —— <b>给"关键词卡"也在此列</b></li>
+    <li>在用户不知情、或未明确授权的情况下，操作用户手机写点评</li>
+    <li>使用酒店、第三方提供的 AIGC 工具或其他代写工具生成点评</li>
+    <li>利用情感绑架、道德胁迫索要点评</li>
+    <li>亲友、店员、股东、合作方等利益相关方在本店写点评</li>
+    <li>恶意注册、多设备多账号、养号刷分的点评</li>
+  </ul>
+
+  <div class="card" style="background:#FAFBFF">
+    <p style="margin:0 0 8px"><b>处罚与治理力度（平台公示口径）</b></p>
+    <ul style="font-size:14px;margin:0">
+      <li>处罚方式：<b>点评分扣除 + 违规点评删除</b>；T+1 通知，公示一周后生效，<b>一直跟到该条点评自然过期（3 年）</b></li>
+      <li>携程 2026 年 5 月一期治理公示：违规点评 <b>79400 条</b>、违规用户 <b>67862 名</b>、违规商家 <b>120 家</b></li>
+      <li>公示案例包含：刷单制造虚假好评、<b>假冒客人撰写好评</b>、诱导用户复制粘贴发布非本人撰写的虚假好评、电话骚扰用户删差评、故意操作订单状态导致用户无法点评</li>
+    </ul>
+  </div>
+
+  <h3>2.7 差评来了怎么办</h3>
+  <div class="card">
+    <p><b>第一步永远是预防。</b>差评一旦产生就删不掉，客人自己也改不了。</p>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="card tight" style="margin:0">
+        <p style="margin:0 0 6px"><b style="color:var(--green)">可申诉的异常点评</b></p>
+        <ul style="font-size:13.8px;margin:0">
+          <li>客人实际未到店</li>
+          <li>内容非本酒店（错位点评）</li>
+          <li>内容违规、无意义</li>
+          <li>低分好评（评分与内容矛盾）</li>
+          <li>恶意差评（差评要挟、离职员工、报复性差评）</li>
+        </ul>
+      </div>
+      <div class="card tight" style="margin:0">
+        <p style="margin:0 0 6px"><b style="color:var(--blue)">申诉路径与时效</b></p>
+        <ul style="font-size:13.8px;margin:0">
+          <li>点评日期 <b>90 天内</b>：EBK 后台自助反馈</li>
+          <li>超过 90 天：需业务经理协助</li>
+          <li>申诉前把凭证与材料备齐，能明显提高通过率和时效</li>
+        </ul>
+      </div>
+      <div class="card tight" style="margin:0">
+        <p style="margin:0 0 6px"><b style="color:var(--red)">绝对不做的事</b></p>
+        <ul style="font-size:13.8px;margin:0" class="x">
+          <li>反复打电话让客人删差评（官方公示案例，直接处罚）</li>
+          <li>用礼品、返现、升房换客人改评</li>
+          <li>在评论区与客人公开对线</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout c-info" style="margin-top:14px">
+      <span class="ttl">一个好消息</span>
+      携程自 2025 年 10 月起上线 <b>AI 差评保护</b>，用于识别和处理恶意评价（官方口径已处理约 9.2 万条恶意评价）。
+      遇到明显恶意的点评，<b>走申诉通道，不要自行联系客人施压。</b>
+    </div>
+    <div class="callout c-ok" style="margin-top:12px">
+      <span class="ttl">把"合理差评"当成资产</span>
+      处理差评的原则是 <b>诚恳沟通、解释误会、解决问题</b>：该道歉道歉，该回复回复，该复盘复盘。
+      一条被认真回复的差评，在潜在客人眼里是"这家店出问题会处理"的证明。
+    </div>
+  </div>
+
+  <h3>2.8 现场算一算：评分测算器</h3>
+  <div class="tool">
+    <h4>携程评分模拟</h4>
+    <p class="hint">输入当前数据，看一条差评的代价，以及要补多少条五星才能回去。<br>
+    说明：真实算法是加权平均（含新鲜度与可信度），此处按算术平均做<b>近似演示</b>，用于建立量感。</p>
+    <div class="fields">
+      <div class="field"><label>当前点评分</label><input id="cur" type="number" step="0.01" value="4.6"></div>
+      <div class="field"><label>当前点评条数</label><input id="cnt" type="number" step="1" value="138"></div>
+      <div class="field"><label>新增这条是几分</label><input id="bad" type="number" step="0.1" value="1"></div>
+      <div class="field"><label>想回到的目标分</label><input id="tgt" type="number" step="0.01" value="4.6"></div>
+    </div>
+    <button class="btn" onclick="calcScore()">开始测算</button>
+    <div class="out" id="scoreOut">点击上方按钮查看结果。</div>
+  </div>
+
+  <div class="tool">
+    <h4>取整演示：为什么 4.79 等于 4.7</h4>
+    <p class="hint">外网展示分 = 后台分<b>向下取一位小数</b>（不是四舍五入）。输入后台分看外网显示。</p>
+    <div class="fields">
+      <div class="field"><label>后台实际分数</label><input id="raw" type="number" step="0.001" value="4.79"></div>
+    </div>
+    <button class="btn" onclick="calcRound()">换算外网展示分</button>
+    <div class="out" id="roundOut">点击上方按钮查看结果。</div>
+  </div>
+</section>
+
+<!-- ========== 第三章 ========== -->
+<section id="ch3">
+  <div class="sec-h">
+    <div class="sec-n">三</div>
+    <div>
+      <h2>小红书 POI 点评与口碑运营</h2>
+      <p>这里的"点评"不是打分，是把社区里的口碑聚合到门店页。</p>
+    </div>
+  </div>
+
+  <h3>3.1 机制：POI 门店页是怎么长出来的</h3>
+  <div class="card">
+    <p>小红书官方对「精选门店」的定义是：<b>把用户留在笔记、评论里面的口碑和内容，聚合成门店页。</b>
+    页面形态与大众点评相似，差别在于<b>评价的来源是社区内容</b>，而不是单纯的交易评价。</p>
+    <p style="margin-top:12px"><b>所以要打赢 POI 门店页，只需要盯住三条机制：</b></p>
+    <div class="grid g3" style="margin-top:10px">
+      <div class="card tight" style="margin:0;border-left:4px solid var(--blue)">
+        <p style="margin:0 0 6px"><b>① 权重：数量和含图率</b></p>
+        <p style="margin:0;font-size:14px">2026 年本地生活搜索排序中，<b>POI 近 30 天评价数量 + 评价含图率权重提升到约 40%</b>，系统还会抓评价里的关键词（如"海景""院子""老板热情"）当排序因子。</p>
+      </div>
+      <div class="card tight" style="margin:0;border-left:4px solid var(--blue)">
+        <p style="margin:0 0 6px"><b>② 闭环：真实到店验证</b></p>
+        <p style="margin:0;font-size:14px">分发逻辑从"点赞收藏"转向 <b>"真实到店 + 评价闭环"双权重</b>。笔记发布后如果该 POI 的到店转化没提升，笔记会被<b>逐渐降权</b>——纯云点赞的爆文不管用了。</p>
+      </div>
+      <div class="card tight" style="margin:0;border-left:4px solid var(--blue)">
+        <p style="margin:0 0 6px"><b>③ 新鲜度：算的是近 30 天</b></p>
+        <p style="margin:0;font-size:14px">因为统计窗口是"近 30 天"，所以必须<b>持续、稳定</b>产出带 POI 的真实内容。冲一波就停，窗口一过等于没做。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>3.2 合规打法五步</h3>
+  <ol>
+    <li><b>认领 POI</b>（免费，必做）：上传 ≥6 张高质量头图，简介写清"营业时间 + 特色 + 交通/停车指引"。</li>
+    <li><b>引导客人发布带 POI 定位的笔记</b>：画面里要有<b>人 / 环境 / 产品</b>，纯文字或网图不算有效内容。</li>
+    <li><b>官方号稳定产出</b>：每周 3–5 篇真实场景笔记，维持"近 30 天"的新鲜度。</li>
+    <li><b>埋关键词</b>：封面 &gt; 标题 &gt; 正文，词要与内容高度相关（避免堆砌被判违规）。</li>
+    <li><b>接住流量</b>：私信 / 群聊 / 站内表单承接，<b>全程走站内通道</b>。</li>
+  </ol>
+
+  <div class="callout c-ok">
+    <span class="ttl">平台在扶持什么内容</span>
+    小红书正在打击"过度美化""与实际体验不符"的种草笔记，
+    对 <b>"真实细节实测"</b>（例如"隔音效果实测""早餐种类清单"）<b>给予流量扶持</b>。
+    → 内容方向应该往"可验证的细节"上走，而不是加滤镜。
+  </div>
+
+  <div class="callout c-warn">
+    <span class="ttl">AI 内容必须标注</span>
+    使用 AI 写文案 / 生图 / 剪辑，发布时必须勾选「AI 辅助创作」。
+    纯 AI 内容除勾选外，正文开头还要文字标注"本篇内容 AI 辅助生成"。<br>
+    处罚阶梯：漏标 → 限流 7 天 + 信用分扣 2 分 → 二次禁言 30 天 + 历史 AI 笔记隐藏 → 三次永久封号 + 主体实名拉黑 + 矩阵号连坐。
+    <b>住宿靠搜索长尾，AI 批量产内容等于自断长尾。</b>
+  </div>
+
+  <h3>3.3 9 月 18 日新规：交易导流违规管理细则（修订版生效）</h3>
+  <div class="callout c-danger">
+    <span class="ttl">就在明天生效，这是本期培训最紧急的一条</span>
+    小红书《交易导流违规管理细则》修订版 <b>2026 年 9 月 18 日正式生效</b>，公示于 9 月 13 日。
+  </div>
+  <div class="tscroll">
+  <table style="min-width:680px">
+    <thead><tr><th>变化点</th><th>具体内容</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>监管场景扩容</b></td>
+        <td>旧版监管"直播 / 置顶消息 / 笔记 / 评论 / 用户资料"；
+        新版<b>进一步纳入群聊、私信、商品、售后链路</b>。识别范围包括：主页昵称、头像、背景图、小红书号、个性签名；群聊名称、发言、欢迎语、公告、置顶；笔记标题、正文、图片、视频、评论；直播间标题、封面、开播内容、弹幕；<b>商品信息、商品推荐语、商品售后链路</b>。</td>
+      </tr>
+      <tr>
+        <td><b>不只看"直接留联系方式"</b></td>
+        <td>以 <b>明示或暗示</b>方式诱导用户前往私域或站外平台，同样触发处罚。
+        官方明确要治理 <b>变形表达、图片植入、暗号提示</b>这类隐晦手法。</td>
+      </tr>
+      <tr>
+        <td><b>多账号配合也算违规</b></td>
+        <td>利用评论、收藏、账号跳转等方式诱导用户脱离平台进行全部或部分交易。</td>
+      </tr>
+      <tr>
+        <td><b>新增关联账号治理</b></td>
+        <td>与违规账号注册主体相同、存在绑定关系，或经风控认定存在相同注册信息、相同收支信息的账号，可能被认定为关联账号并<b>联动处理</b>。
+        → <b>封一个号再开新号继续导流这条路，堵死了。</b></td>
+      </tr>
+      <tr>
+        <td><b>处罚升级</b></td>
+        <td>警告；账号 / 店铺 / 直播间 / 笔记 / 商品<b>限流</b>；违规内容下架；<b>账号资料重置</b>；违规信息屏蔽；群聊封禁；断播；商品下架；限制私信、评论、群聊、直播、商品发布功能；严重者<b>封禁账号或店铺</b>。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-danger" style="margin-top:14px">
+    <span class="ttl">⚠️ 下面这些"网上流传的技巧"，从明天起不能用</span>
+    <ul class="x" style="margin:8px 0 0">
+      <li>把小红书号改成微信号，简介写"有事可以看号"</li>
+      <li>注册小号，把联系方式放在小号昵称 / 头像 / 简介里，用大号评论引导</li>
+      <li>私信里把微信号拆开发、用谐音（薇 / vx / 幺叁捌）</li>
+      <li>图片水印藏联系方式、笔记里写"看图左下角""主页有方式"</li>
+    </ul>
+    <p style="margin:10px 0 0"><b>这些正是新规明确要治的"变形表达 / 暗号提示 / 关联账号"。</b>之前能用是因为没被查到，不代表合规。</p>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">✅ 合规承接的唯一正解</span>
+    走官方<b>私信获客工具</b>（留资卡 / 名片卡 / 交易卡 / 表单落地页）。
+    前置条件是<b>企业专业号 + 聚光投流（近 30 天"私信开口"消耗 &gt; 0，达标次日开通）</b>。
+    <br><b>详细配置步骤见培训后单独下发的附件《小红书私信获客工具配置 SOP》。</b>
+    <br>另：相对安全的动作是<b>引导对方主动留下联系方式</b>，而不是我们主动把自己的联系方式发出去。
+  </div>
+
+  <h3>3.4 负面笔记处置：先分类，再动手</h3>
+  <p>一刀切处理会扩大舆情。按类型走不同路径：</p>
+  <div class="tscroll">
+  <table style="min-width:720px">
+    <thead><tr><th>类型</th><th>处置路径</th><th>注意</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="plat">恶意造谣 / 竞品抹黑 / 侵权诋毁</td>
+        <td>走官方侵权投诉通道。截图留存证据、营业执照与权利证明，标注不实内容位置；审核周期一般 <b>1–7 个工作日</b>。</td>
+        <td>材料不充分、申诉理由不贴合社区规范，大概率被驳回。</td>
+      </tr>
+      <tr>
+        <td class="plat">真实用户客诉吐槽</td>
+        <td><b>私信源头沟通</b>，倾听诉求、给出可行解决方案。多数客人在诉求解决后愿意自删或补充说明。</td>
+        <td>全程留存沟通记录；<b>绝不在评论区公开争辩</b>——互动数据越高，笔记推得越广。</td>
+      </tr>
+      <tr>
+        <td class="plat">信息误解 / 断章取义</td>
+        <td>评论区长文回应，感谢建议、说明真实情况与改进动作。这类内容反而能提升品牌好感。</td>
+        <td>不带情绪，就事论事。</td>
+      </tr>
+      <tr>
+        <td class="plat">无法下架 / 沟通无果的残留内容</td>
+        <td>用<b>正向内容稀释</b>：持续产出真实笔记，把负面内容压到搜索结果后面。</td>
+        <td>这是长效手段，不是应急手段，要提前布局。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout c-danger">
+    <span class="ttl">两个必须避开的坑</span>
+    <b>① 不要信"付费删帖""内部渠道"</b>——小红书审核按规则走，没有内部渠道，绝大多数是骗钱，而且可能把账号搭进去。<br>
+    <b>② 恶意点评申诉只有一次机会</b>——商家可在恶意点评发布后 <b>30 天内</b>申诉，<b>每条评论仅 1 次申诉机会</b>。证据和理由必须一次到位。
+  </div>
+</section>
+
+<!-- ========== 第四章 ========== -->
+<section id="ch4">
+  <div class="sec-h">
+    <div class="sec-n">四</div>
+    <div>
+      <h2>抖音酒旅：点评规则与经营分</h2>
+      <p>规则最严、时效最短，但一旦跑通，到店闭环的确定性最高。</p>
+    </div>
+  </div>
+
+  <h3>4.1 评价时效与计分</h3>
+  <div class="tscroll">
+  <table style="min-width:640px">
+    <thead><tr><th>项目</th><th>规则</th></tr></thead>
+    <tbody>
+      <tr><td>首次评价</td><td>团购订单完成后 <b>15 天内</b>；生活服务订单完成后 90 天内可评价</td></tr>
+      <tr><td>追加评价</td><td>订单完成后 <b>180 天内</b>；<b>只有首次评价参与打分，追评不计入好中差评数</b></td></tr>
+      <tr><td>评价入口</td><td>团购消费订单评价；非消费评价两种：发布视频打卡 POI 后评价 / 到店后评价（<b>未关联订单的评价会被限制曝光</b>）</td></tr>
+      <tr><td>评价组成</td><td><b>评价态度</b>（一颗心"不推荐"→ 五颗心"推荐"）+ <b>评价内容</b>（文字 / 图片 / 视频）</td></tr>
+      <tr><td>评分更新</td><td>每日按 <b>T-1</b> 更新：今天的评分 = 昨天及以前全部评价算出来的分</td></tr>
+      <tr><td>商家回复</td><td>每条评价（含对应的追评）<b>最多回复 1 次</b>；若商家回复后用户追加评论，<b>不能再次回复</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout c-warn">
+    <span class="ttl">回复机会只有一次，慎用</span>
+    抖音的回复不可修改、不可追加。遇到差评时，<b>想清楚再发</b>——一次不专业的回复会被永久留在页面上，比差评本身更伤转化。
+  </div>
+
+  <h3>4.2 评分怎么算</h3>
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 6px"><b>基础逻辑</b></p>
+        <ul style="font-size:14px">
+          <li>以整体<b>评价数 / 好评率</b>为基础算分</li>
+          <li>只算被判定为<b>"有效"</b>的评价；作弊、刷评、恶意差评不计入</li>
+          <li>内容与门店无关的评价不计入</li>
+          <li><b>同一位用户反复写评，只计一次</b></li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><b>四类修正</b></p>
+        <ul style="font-size:14px">
+          <li><b>时间衰减</b>：历史评价作用随时间递减，<b>不新增评价分数会往下掉</b></li>
+          <li><b>质量修正</b>：越真实、信息越丰富，权重越高（至少 <b>1 图 15 字</b>）</li>
+          <li><b>来源修正</b>：真实到店消费的评价，可信度高于非到店评价</li>
+          <li><b>负向修正</b>：近期履约体验反馈差，分数会被拉低</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>4.3 举报与申诉</h3>
+  <div class="grid g2">
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b style="color:var(--green)">支持申诉的场景</b></p>
+      <ul style="font-size:14px">
+        <li>利用中差评骗赔（差评威胁转账、发红包、返券）</li>
+        <li>同行恶意竞争</li>
+        <li>评价含广告信息（QQ / 微信 / 二维码 / 电话 / 外链）</li>
+        <li>签收前评价商品质量、评价的商品非本店所售</li>
+        <li>辱骂或不当词汇</li>
+      </ul>
+    </div>
+    <div class="card tight">
+      <p style="margin:0 0 6px"><b style="color:var(--blue)">路径与时效</b></p>
+      <ul style="font-size:14px">
+        <li>异常评价需在 <b>30 天内</b>发起申诉</li>
+        <li>平台 <b>5 个工作日</b>内反馈结果</li>
+        <li>举证优先用平台内聊天记录，跨渠道沟通需提供关联凭证，否则视为无效举证</li>
+        <li>频繁发起无效申诉，可能被限制申诉次数</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout c-danger">
+    <span class="ttl">这条一定要跟一线讲明白</span>
+    <b>"因商品、服务、履约、售后导致客人体验不好产生的差评，平台不予处理。"</b><br>
+    也就是说——<b>差评该来的还是会来，申诉不是删差评的工具。</b>把希望寄托在申诉上，不如把服务做在前面。
+  </div>
+
+  <h3>4.4 2026 年 9 月 16 日新规：八类"操纵评价"行为全部叫停</h3>
+  <div class="callout c-danger">
+    <span class="ttl">新规就在昨天生效，八条禁令</span>
+    <ul class="x" style="margin:8px 0 0">
+      <li>干扰、施压客人删改差评（反复劝说、以部分退款为条件要求删除）</li>
+      <li><b>代写代发评价</b>——新规明确：<b>即使消费者本人同意，商家也不得代其提交或撰写评价</b>；提供固定文案、模板、AIGC 生成内容引导照搬，同属违规</li>
+      <li>强制好评</li>
+      <li>把退货、退款、退押金、正常履约与"发布好评"绑定</li>
+      <li>引导客人核销异常订单，以制造评价资格</li>
+      <li>在客人<b>尚未实际消费</b>时索要评价</li>
+      <li>以返现、赠品、优惠券、补偿等，引导客人发布<b>指定星级、指定文案或特定倾向</b>的评价</li>
+      <li>使用自有 / 关联账号刷评，或购买第三方刷评服务；频繁催评、盯着客人当场写、查验评价内容</li>
+    </ul>
+  </div>
+  <div class="tscroll">
+  <table style="min-width:600px">
+    <thead><tr><th>处罚</th><th>细则</th></tr></thead>
+    <tbody>
+      <tr><td>处置措施</td><td>对相关门店采取 <b>评分不展示</b> 和 <b>"吃喝玩乐榜"下榜</b></td></tr>
+      <tr><td>处置期限</td><td>首次 <b>7 天</b> → 再次 <b>14 天</b> → <b>21 天</b> → <b>30 天</b>，依次延长</td></tr>
+      <tr><td>整改机会收紧</td><td>此前每个违规子场景各有一次"以考代罚"机会，<b>现调整为整个评价违规场景只保留一次</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout c-ok">
+    <span class="ttl">官方原话，直接背下来</span>
+    "在不打扰消费者前提下，商家可<b>适度提醒或邀请评价</b>，但不能干预消费者<b>是否评价、何时评价以及如何评价</b>的自主意愿。"
+  </div>
+
+  <h3>4.5 抖音经营分（住宿行业）</h3>
+  <div class="card">
+    <p>满分 <b>120 分</b> = 基础分 100 + 附加分 20。经营分决定流量资源分配和"金冠"标识的解锁。</p>
+    <div class="tscroll" style="margin-top:12px">
+    <table style="min-width:660px">
+      <thead><tr><th>模块</th><th>分值</th><th>构成</th></tr></thead>
+      <tbody>
+        <tr><td class="plat">搭门店</td><td>10 分</td><td>相册图 4 + 门店信息 4 + 服务设施 2 <span class="badge b-green">补全就拿分</span></td></tr>
+        <tr><td class="plat">稳房源</td><td>30 分</td><td>日历房 15 + 预售券 15 <span class="badge b-orange">金冠门槛项</span></td></tr>
+        <tr><td class="plat">提质量</td><td>30 分</td><td>用户评价 20 + 履约质量 10 <span class="badge b-orange">金冠门槛项</span></td></tr>
+        <tr><td class="plat">拿收益</td><td>30 分</td><td>近 30 天核销金额在城市同三级行业的排名</td></tr>
+        <tr><td class="plat">扩流量</td><td>20 分（附加）</td><td>持续投稿视频 10 + 持续开播 10</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:14px"><b>履约质量</b>包含三项硬考核：近 60 天无 P0/P1/P2 级舆情（出现直接 0 分）、近 30 天到店无房率 ≤ 行业均值、近 7 天拒单率 ≤ 行业均值。</p>
+    <div class="callout c-info" style="margin-top:14px">
+      <span class="ttl">提分优先级（给店长的动作清单）</span>
+      <b>① 先拿满"搭门店"10 分</b>——成本最低、见效最快，纯配置项。<br>
+      <b>② 卡住金冠门槛</b>——日历房任务 ≥7 分、提质量任务 ≥15 分，先把资格拿到手。<br>
+      <b>③ 再冲高分</b>——补预售券、优化评价与履约、提升核销、稳定更新视频与直播。
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第五章 · AI 板块 ========== -->
+<section id="ch5ai">
+  <div class="sec-h">
+    <div class="sec-n">五</div>
+    <div>
+      <h2>AI 板块：豆包 · 点点 · 微信 AI</h2>
+      <p>AI 正在从"信息入口"变成"交易入口"。这一章讲清三件事：新入口怎么收费、<b>怎么让 AI 更多推荐我们（GEO）</b>、我们现在该做什么。</p>
+    </div>
+  </div>
+
+  <div class="callout c-info">
+    <span class="ttl">为什么民宿现在就要管 AI 入口</span>
+    过去客人订房是"翻列表"——你的店在第几页，至少还有个被翻到的机会。<br>
+    现在客人开始"问 AI"——<b>AI 只推 2～3 家，剩下的连出场资格都没有</b>。<br>
+    而三个 AI 入口有个共同规则：<b>推荐位不卖，只能靠"被 AI 认识"挣到。</b>
+  </div>
+
+  <h3>5.1 豆包：AI 订房的第一张"价目表"</h3>
+  <p>2026 年 8 月 10 日起，通过豆包入口跳转抖音来客成交的酒店订单，开始执行<b>独立费率</b>。这是国内首个 AI 对话入口对酒店订单明确抽佣。</p>
+
+  <div class="tscroll">
+  <table style="min-width:680px">
+    <thead><tr><th style="width:22%">项目</th><th>规则</th></tr></thead>
+    <tbody>
+      <tr><td>政策依据</td><td>《2026 年抖音生活服务平台特定渠道软件服务费政策说明》（抖音生活服务学习中心 2026-07-27 发布）</td></tr>
+      <tr><td>生效时间</td><td><b>2026 年 8 月 10 日 0:00</b> 起</td></tr>
+      <tr><td>费率</td><td>软件服务费 <b>11.4%</b> + 支付手续费 <b>0.6%</b> = 综合约 <b>12%</b></td></tr>
+      <tr><td>计费基数</td><td>用户<b>实付金额 + 平台等第三方补贴</b>（如平台通用券）；<b>商家自己承担的优惠不计入</b></td></tr>
+      <tr><td>收费边界</td><td><b>只对</b>"豆包对话 → 推荐酒店 → 跳转抖音来客 → 成交核销"的<b>闭环订单</b>收费</td></tr>
+      <tr><td>不收费的情况</td><td>从豆包跳品牌<b>官网 / 自有小程序 / 外部 OTA</b> 成交 —— 不在该扣费体系内</td></tr>
+      <tr><td>退款</td><td>发生<b>全额退款</b>时，平台全额退还对应扣除的服务费</td></tr>
+      <tr><td>扣款方式</td><td>从待结算款项或账户余额中扣除；余额不足会通知补足，未补足平台予以追偿</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>12% 在行业里是什么水平</h4>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>渠道</th><th>综合费率</th><th>流量逻辑</th></tr></thead>
+    <tbody>
+      <tr><td class="plat">抖音主站<br><span style="font-weight:400;font-size:12.5px;color:var(--gray)">住宿团购</span></td><td><b>8%</b><br>（7.4% + 0.6%）</td><td>"刷视频"：泛兴趣流量，用户被偶然种草，比价习惯强、决策链路长</td></tr>
+      <tr><td class="plat">豆包 AI 渠道</td><td><b>约 12%</b><br>（11.4% + 0.6%）</td><td>"问 AI"：用户带着明确需求来，AI 一次性筛完，跳转少、比价少，转化与核销更好</td></tr>
+      <tr><td class="plat">传统 OTA</td><td><b>约 13%～15%</b><br><span style="font-size:12.5px;color:var(--gray)">不同平台与门店差异较大</span></td><td>"翻列表"：人找货，费率里含搜索排名、流量分发、会员体系等综合服务</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-warn">
+    <span class="ttl">12% 买的不是"被看到"，是"被选中"</span>
+    抖音主站 8% 买的是海量泛流量；豆包 12% 买的是<b>高意向精准流量</b>。<br>
+    所以豆包费率<b>高于主站、低于 OTA，卡在中间</b>——不是平台单方面涨价，是流量质量本身不同。
+  </div>
+
+  <div class="callout c-danger">
+    <span class="ttl">最关键的一条：推荐位不卖</span>
+    豆包官方公开回应：生活服务业务<b>目前没有付费推广</b>，推荐酒店<b>不收取广告费</b>，<b>商家不能通过付费影响推荐或排序</b>，仅在订单成交后支付渠道服务费。<br>
+    → 意思很直白：<b>能不能进 AI 的推荐名单，不由预算决定，由 AI 对你的品牌认知决定。</b>
+  </div>
+
+  <h4>对湄屿宿集怎么算这笔账</h4>
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 6px"><b style="color:var(--green)">有利的一面</b></p>
+        <ul style="font-size:14px">
+          <li>抖音团购我们已经在做，豆包渠道<b>自动承接</b>，不需要额外入驻、不需要重复上架</li>
+          <li>背靠字节生态，订单沉淀在<b>抖音来客后台</b>，运营门槛低</li>
+          <li>豆包 AI 订房还在早期，<b>完善信息就有机会拿到自然推荐</b>，不必重度投流</li>
+          <li>12% 仍低于传统 OTA 的 13%～15%</li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><b style="color:var(--red)">要算清的一面</b></p>
+        <ul style="font-size:14px">
+          <li>12% 会吃掉大部分利润，<b>低价引流爆款不要放豆包主推</b></li>
+          <li>现阶段豆包订单体量有限，<b>只能当增量补充渠道，不能当主力获客</b></li>
+          <li>要定期统计豆包渠道的<b>核销率、复购率、客单价</b>，算清实际获客成本</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px;margin-bottom:0;font-size:14px;color:var(--gray)">
+      <b>建议动作</b>：豆包渠道优先上<b>高客单房源</b>（海景房、连住套餐、特色主题房），用客单价抵消高费率；完善抖音来客里的地址、设施、特色标签，标签越细越容易被精准匹配。
+    </p>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">一条必须记住的闭环关系</span>
+    《2026 上半年中国 AI 旅游应用趋势洞察报告》：<b>66.2%</b> 的用户拿到 AI 推荐后，还会回到 OTA 再验证一遍；只有 <b>15.2%</b> 的人高度信任 AI 并直接下单。<br>
+    → <b>AI 给你推荐资格，用户给你成交资格。</b>用户回来验证时看什么？看评分、看点评、看真实内容——所以前面几章的点评功课，一点都不能省。
+  </div>
+
+    <h3>5.2 GEO：怎么让 AI 更多推荐湄屿宿集</h3>
+  <p>这是本章最值得花时间的一节。<b>AI 渠道的费率我们改变不了，但"AI 认不认识湄屿宿集"这件事，是我们可以做的。</b>这套做法叫 GEO（生成式引擎优化）。</p>
+
+  <div class="callout c-info">
+    <span class="ttl">GEO 和 SEO 的区别，一句话说清</span>
+    SEO 争的是"<b>排名</b>"——让你的店出现在搜索结果第几位；<br>
+    GEO 争的是"<b>答案席位</b>"——让 AI 在被问到的时候，<b>主动把你写进那份 3～5 家的短名单里</b>。<br>
+    <b>进不去短名单，在用户眼里就等于"完全隐形"——连被比较的资格都没有。</b>
+  </div>
+
+  <h4>先看一个跟我们处境很像的真实案例</h4>
+  <div class="card">
+    <p style="margin:0 0 10px"><b>大乐之野 · 梅里雪山店</b></p>
+    <p style="margin:0 0 10px;font-size:14.5px">产品本身很有竞争力——多数房型直面梅里雪山，有地暖、弥散供氧，还提供徒步定制和藏文化体验。但开业时间短，<b>网上几乎没有评价、攻略和结构化介绍</b>。<br>
+    结果：用户问 AI"梅里雪山住哪里好"，<b>答案里根本没有它</b>。本该属于它的意向客户，被信息更完整的竞品接走了。</p>
+    <p style="margin:0 0 8px"><b>他们做了三件事：</b></p>
+    <ol style="font-size:14.5px;margin:0 0 12px">
+      <li><b>把门店信息归拢统一</b>——位置、房型设施、服务项目、在地体验，先确保准确、口径一致</li>
+      <li><b>搞清楚用户在问什么</b>——不是"精品民宿""高端民宿"这类大词，而是"带老人去梅里雪山住哪比较舒服"这种<b>具象的场景提问</b></li>
+      <li><b>针对这些问题生产内容，发到 AI 信任的渠道</b></li>
+    </ol>
+    <p style="margin:0;font-size:14.5px">结果：<b>首批内容发布第二天，就进入了"梅里雪山民宿推荐"的 TOP 2</b>。品牌提及率 <b>23%</b>，平均推荐排名 <b>2.1</b>，正向率 <b>99.2%</b>。AI 给出的推荐理由，准确说中了它最想被记住的那几个卖点。</p>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">这个案例里最值钱的一句话</span>
+    他们<b>没有去卷大词</b>——"高端民宿推荐""云南民宿推荐"这类问题竞争极其激烈，成熟品牌早已占位，新店挤不进去。<br>
+    他们反过来问："<b>哪些问题是这家店最有资格回答的？</b>" 答案就是"<b>梅里雪山民宿推荐</b>"——场景足够精准，用户问出口时离决策只差一步。<br>
+    <b>→ 湄屿宿集对应的就是我们最有资格回答的那些问题：</b>「平潭民宿」「平潭海景民宿」「平潭看日落住哪」「湄洲岛住宿」「平潭带宠物民宿」。
+  </div>
+
+  <h4>湄屿宿集可以直接照搬的六条</h4>
+  <div class="tscroll">
+  <table style="min-width:740px">
+    <thead><tr><th style="width:5%">#</th><th style="width:26%">动作</th><th>具体怎么做</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><b>多平台信息必须一致</b><br><span style="font-size:12.5px;color:var(--red)">这条不做，后面五条全打折</span></td>
+        <td>门店名、地址、房型名、价格、核心卖点，在 <b>携程 / 小红书 / 抖音 / 公众号 / 地图</b> 上必须对齐。<b>AI 会做交叉验证——发现各平台各说各话，直接把你划掉。</b></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><b>把"介绍自己"改成"回答问题"</b></td>
+        <td>不要写"环境优美、服务贴心、性价比高"这种人人都会用的词。要写"<b>带老人来平潭住哪方便</b>""<b>带孩子怎么安排</b>""<b>下雨天有什么替代玩法</b>""<b>哪间房看日落最好</b>"。每个回答对应一类需求，AI 才用得上。</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><b>点评回复带上地名和门店名</b></td>
+        <td>别只回"谢谢惠顾"。改成"感谢您来<b>平潭</b>住我们<b>湄屿宿集</b>，您提到的那家海鲜面馆我们记下了"。<b>带上地名和品牌的回复，本身就是一块会被 AI 抓取的信源。</b>越具体、越有本地味，AI 越觉得你这家店真实存在。</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><b>把事实写结构化</b></td>
+        <td>AI 读不懂堆砌词藻的抒情软文，它要找的是<b>确定的事实</b>：房间面积、床型、在几楼、有无电梯、怎么停车、宠物政策、入住退房时间、走到海边几分钟。<b>越是具体参数，越容易被引用。</b></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><b>出一份自己的原创小数据</b></td>
+        <td>一年接待多少亲子客、哪个月最旺、客单价区间、回头客比例——整理成<b>一页纸</b>发出去。<b>原创数据是最硬的权威筹码</b>，AI 偏爱能引用具体数字的来源。</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><b>持续更新，别建完就扔</b></td>
+        <td>定个节奏，每月补几条新问答、新案例。三个月不更新，AI 就没理由继续推你。<b>GEO 是长跑不是冲刺，断更的店很快被新内容挤下去。</b></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-danger">
+    <span class="ttl">两个必须知道的提醒</span>
+    <b>① 豆包不是只用抖音的数据。</b>公开信息显示，豆包<b>同时集成了美团与携程的数据</b>。也就是说——<b>我们在携程上的点评和内容，也是 AI 推荐我们的依据。</b>第二章讲的每一件携程功课，在这里都会变成 AI 判断我们的"信任证据"；反过来，OTA 上的差评也会被 AI 看到。这就是为什么第 1 条"信息一致"排在第一位。<br><br>
+    <b>② 不要买"AI 优化""包你被推荐"的服务。</b>2026 年 3·15 晚会专门曝光了 GEO 灰产——批量投喂假评测、甚至凭空编造一个不存在的品牌推上 AI 首选。监管部门已把"干扰算法推荐的虚假宣传"列为重点治理对象。<b>黑帽 GEO 已是明确红线，做的服务商和使用方都会被追责。</b>
+  </div>
+
+<h3>5.3 小红书「点点」：从"排名"到"引用"</h3>
+  <p><b>点点</b>是小红书 2026 年 5 月在 PC 端上线的 AI 搜索助手，把移动端的对话式搜索搬到了大屏。关键点：<b>它不是通用大模型，而是完全基于小红书站内真实笔记训练的</b>生活决策 AI。</p>
+
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 6px"><b style="color:var(--blue)">变化一：决策入口从"刷"变"问"</b></p>
+        <p style="font-size:14px;margin:0;color:var(--gray)">用户不再翻几十篇笔记，而是直接问"平潭看海住哪家靠谱"。AI 基于真实笔记生成带来源的答案。</p>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><b style="color:var(--blue)">变化二：内容价值从"排名"变"引用"</b></p>
+        <p style="font-size:14px;margin:0;color:var(--gray)">传统搜索拼排名；在点点里，品牌要让自己的内容<b>成为 AI 回答的信源</b>。谁的笔记被引用，谁就拿到免费推荐位。</p>
+      </div>
+    </div>
+  </div>
+
+  <h4>搜索排序权重（2026 年口径）</h4>
+  <div class="card tight">
+    <p style="margin:0 0 10px"><b>点击率 35%</b> ＋ <b>互动量 25%</b> ＋ <b>有效停留 20%</b> ＋ <b>AI 语义匹配 20%</b></p>
+    <p style="margin:0;font-size:14px;color:var(--gray)">→ 关键词堆砌已经没用了。<b>内容必须真正回答用户的问题</b>，才有机会被 AI 语义匹配到。</p>
+  </div>
+
+  <h4>小红书现在的四个搜索场景（别只盯着一个）</h4>
+  <div class="tscroll">
+  <table style="min-width:720px">
+    <thead><tr><th style="width:16%">场景</th><th style="width:44%">处理什么内容</th><th>合规边界</th></tr></thead>
+    <tbody>
+      <tr><td class="plat">搜一搜</td><td>品牌词、品类词、场景词、地区词、问题词的内容布局，让用户搜索时看到一致的品牌信息</td><td>不承诺固定排名、首页、收录周期或特定展示位置</td></tr>
+      <tr><td class="plat">问一问</td><td>围绕用户真实问题整理问答库、FAQ、经验解释与避坑内容</td><td>不编造提问数量、问题热度或平台推荐机制</td></tr>
+      <tr><td class="plat">点点</td><td>把品牌事实、服务边界、产品信息整理成清晰结构，便于 AI 问答场景理解</td><td>不写"优先抓取""稳定引用""一定推荐"等承诺</td></tr>
+      <tr><td class="plat">点点口碑</td><td>整理品牌口碑、使用体验、常见评价、服务差异与风险边界</td><td>不编造好评、虚假评价、达人体验或效果数据</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>让点点引用我们：五个动作</h4>
+  <ol style="font-size:14.5px">
+    <li><b>围绕"问答"重组笔记</b>——用"问题式标题 + 结论前置 + 要点分点"，方便 AI 抽取。标题写客人真的会问的话，不写"湄屿宿集｜平潭民宿"这种自说自话。</li>
+    <li><b>强化企业号权威性</b>——主体认证、头图、简介、置顶笔记把业务说清楚；认证信息与公众号、门店页保持一致，降低 AI 判断信源可信度的成本。</li>
+    <li><b>评论区预埋问答</b>——点点做多轮对话时，评论区的高质量问答是重要补充信源。官方号亲自在评论区答疑，一举两得。</li>
+    <li><b>打通站内站外信息</b>——笔记、门店页、官网、公众号的地址、电话、房型、服务必须一致。<b>别让 AI 抓到互相矛盾的信息</b>，那会直接降低引用优先级。</li>
+    <li><b>图文与视频并重</b>——点点会同时呈现图文和视频内容，实拍、场景化素材要两条腿走路。</li>
+  </ol>
+
+  <div class="callout c-ok">
+    <span class="ttl">今天就能做的一件事（建议当场演示）</span>
+    打开 <span class="mono">xiaohongshu.com/ai_chat</span>，输入"平潭 民宿 推荐""平潭 海景 民宿 哪家好"这类<b>客人真会问的问题</b>，看答案里<b>有没有湄屿宿集</b>。<br>
+    <b>有</b> → 记下是哪篇笔记被引用了，照这个路子复制。<br>
+    <b>没有</b> → 说明我们在点点里还是隐形的，这就是接下来的内容方向。
+  </div>
+
+  <h3>5.4 微信指数：先验证需求，再决定投入</h3>
+  <div class="tscroll">
+  <table style="min-width:640px">
+    <thead><tr><th style="width:20%">项目</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>是什么</td><td>微信官方 2017 年 3 月推出的移动端大数据分析工具，反映关键词在微信生态内的<b>热度趋势</b></td></tr>
+      <tr><td>数据来源</td><td><b>只包含</b>微信搜索、公众号文章、朋友圈公开转发的文章<br><span style="font-size:13px;color:var(--gray)">不含私聊、群聊及其他非公开内容</span></td></tr>
+      <tr><td>时间跨度</td><td>只支持 <b>7 日 / 30 日 / 90 日</b> 三档</td></tr>
+      <tr><td>更新频率</td><td>每日更新一次</td></tr>
+      <tr><td>怎么打开</td><td>微信顶部搜索框输入"<b>微信指数</b>"→ 进主页 → 输入关键词<br>或直接搜"<b>XX微信指数</b>"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>民宿拿它干什么</h4>
+  <div class="card">
+    <ul style="font-size:14.5px;margin:0">
+      <li><b>验证品类需求</b>——搜"平潭民宿""平潭海景房""湄洲岛住宿"，看有没有真实搜索量、什么时间起量。<b>节假日前的曲线抬头，就是该提前铺内容的时候。</b></li>
+      <li><b>盯自家品牌词</b>——搜"湄屿宿集"。如果连自家品牌词都没什么热度，说明品牌认知还没建立起来，这本身就是个信号。</li>
+      <li><b>找公众号选题</b>——指数在上升的词，就是该写的题。这比凭感觉定选题靠谱得多。</li>
+      <li><b>比竞品</b>——把周边竞品词放一起看热度走势，判断自己在区域里的位置。</li>
+    </ul>
+  </div>
+
+  <div class="callout c-warn">
+    <span class="ttl">别误读微信指数</span>
+    它<b>只反映微信生态内的关注度</b>，不含其他平台；而且<b>指数高 ≠ 会成交</b>。<br>
+    正确用法：用它判断"<b>这个词值不值得做</b>"，不要用它判断"<b>能不能赚钱</b>"。
+  </div>
+
+  <h3>5.5 微信 AI（小微）：公测在即，现在就要卡位</h3>
+  <div class="callout c-danger">
+    <span class="ttl">时效信息 · 本条请重点划记</span>
+    微信原生 AI 助手「<b>小微</b>」于 2026 年 6 月 20 日开启内测，<b>正式公测规划预计在 2026 年 9 月下旬启动</b>。<br>
+    <span style="font-size:13.5px;color:var(--gray)">（该时间为行业公开课现场披露的规划口径，最终上线节点以微信官方公告为准。）</span>
+  </div>
+
+  <div class="tscroll">
+  <table style="min-width:660px">
+    <thead><tr><th style="width:20%">项目</th><th>情况</th></tr></thead>
+    <tbody>
+      <tr><td>是什么</td><td>微信团队自研的<b>原生 AI 助手</b>，由微信自研的 <b>WeLM</b> 模型驱动</td></tr>
+      <tr><td>入口</td><td>微信主界面<b>左上角</b>图标 / <b>右滑</b>主界面</td></tr>
+      <tr><td>已上线能力</td><td>文字与语音对话；查天气、查快递、点外卖；操作微信原生功能（发消息、打电话、搜朋友圈）；<b>调起小程序</b>；搜索视频与文章；生成图片与笔记</td></tr>
+      <tr><td>AI 入口数量</td><td>已扩展到 <b>16 个</b>，新增：<b>公众号消息页「常看的号」AI 总结</b>、<b>公众号文章详情页「AI 总结」</b>、朋友圈「AI 点评」、聊天图片「AI 处理」</td></tr>
+      <tr><td>当前局限</td><td>仍在内测：<b>只支持文字消息，不能代办具体任务，群发功能未开放</b>，定时消息也不支持发给他人小微</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-info">
+    <span class="ttl">最核心的变化：从"搜商家"到"说需求"</span>
+    公开课口径：<b>用户只需说出需求，小微自动在微信全域生态内匹配优质商家，自主完成搜索、选店、加购，用户仅需完成最终支付确认。</b><br>
+    → 这和豆包是同一件事：<b>用户不再"搜商家"，而是"说需求、等 AI 选"。能不能被选中，取决于 AI 认不认识你。</b>
+  </div>
+
+  <h4>微信生态入口是打通的</h4>
+  <div class="card tight">
+    <p style="margin:0 0 10px;font-size:14.5px">腾讯方面口径：小微能调用微信的<b>社交图谱、知识图谱、商户触达能力和支付功能</b>；未来小程序、商家、每个用户都会有自己的 Agent。</p>
+    <p style="margin:0;font-size:14.5px">已入驻的商家，用户无论通过 <b>小微 AI / 视频号 / 公众号 / 搜一搜</b> 任一入口发起搜索，都可能触达。</p>
+  </div>
+
+  <h4>为什么"现在就要在公众号做推送"</h4>
+  <div class="tscroll">
+  <table style="min-width:680px">
+    <thead><tr><th style="width:34%">逻辑</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>公众号是微信生态里权重最高的长文载体</td><td>AI 要引用你，前提是生态内有<b>可检索、结构化、成体系</b>的内容。公众号文章是最直接的载体。</td></tr>
+      <tr><td>小微已上线"公众号 AI 总结"入口</td><td>你的文章被 AI 总结 = <b>已经被 AI 完整读过一遍</b>。这是现阶段最直接的"被 AI 认识"。</td></tr>
+      <tr><td>公测前的内容沉淀 = 公测时的先发优势</td><td>AI 引用有明显<b>马太效应</b>：先被引用、内容越完整，越容易被持续引用。等公测再动手就晚了。</td></tr>
+      <tr><td>结构化内容更容易被抽取</td><td>标题即问题、结论前置、要点分点，事实（地址/房型/设施/入住时间/停车）写清楚。</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 8px"><b style="color:var(--blue)">总部 / 运营侧动作</b></p>
+        <ul class="ck" style="font-size:14px">
+          <li>公众号建立固定栏目，围绕<b>客人真实问题</b>写（"平潭看海住哪""民宿怎么选房型"）</li>
+          <li>标题写成<b>问题句</b>，正文开头<b>先给结论</b></li>
+          <li>把门店事实写清楚：地址、房型、设施、宠物政策、入住退房时间、停车</li>
+          <li>公众号简介、菜单、认证信息与门店页 / 小红书 / OTA <b>保持一致</b></li>
+          <li>用微信指数验证选题，优先写<b>指数上行</b>的词</li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin:0 0 8px"><b style="color:var(--blue)">门店执行侧动作</b></p>
+        <ul class="ck" style="font-size:14px">
+          <li>开通<b>官方认证视频号</b>，头像、简介、认证资料补齐</li>
+          <li>视频<b>左下角挂载产品链接与 POI 地址</b>，让用户能直接从视频进店</li>
+          <li>重视微信独有的<b>熟人裂变</b>：用户点赞后其微信好友可以看到这条视频</li>
+          <li>客人离店后的优质实拍素材，<b>征得同意</b>后授权用于公众号与视频号</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>5.6 三个 AI 入口放一起看</h3>
+  <div class="tscroll">
+  <table style="min-width:760px">
+    <thead><tr><th style="width:15%">维度</th><th>豆包</th><th>小红书 · 点点</th><th>微信 · 小微</th></tr></thead>
+    <tbody>
+      <tr><td><b>触发方式</b></td><td>语音 / 文字问答</td><td>站内 AI 搜索、多轮对话</td><td>微信内对话</td></tr>
+      <tr><td><b>成交闭环</b></td><td>跳转<b>抖音来客</b></td><td>站内笔记 / 店铺 / 私信</td><td>微信<b>小程序</b></td></tr>
+      <tr><td><b>渠道收费</b></td><td>成交后收约 <b>12%</b></td><td>按站内原有交易规则</td><td>暂未见单独渠道费率</td></tr>
+      <tr><td><b>推荐位能买吗</b></td><td><b>不能</b>（官方明确付费不影响推荐排序）</td><td><b>不能</b>（平台不承诺引用）</td><td>未开放商家付费影响</td></tr>
+      <tr><td><b>靠什么被推荐</b></td><td>AI 对品牌的认知</td><td>内容被 AI 引用</td><td>微信生态内容资产 + 商户入驻</td></tr>
+      <tr><td><b>现在能做什么</b></td><td>完善抖音来客信息、上高客单房源</td><td>做问答式笔记、测点点可见度</td><td>公众号推送 + 认证视频号 + 挂 POI</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">一句话总结</span>
+    以前是"<b>投流抢位置</b>"，现在是"<b>建设 AI 认知抢位置</b>"。<br>
+    AI 推荐的底层是<b>公开信息的一致性与可信度</b>——而这件事，<b>现在投入产出比最高、也最不需要花钱</b>。
+  </div>
+
+  <div class="callout c-danger">
+    <span class="ttl">三条纪律</span>
+    <b>① 不要把 AI 渠道当主力。</b>豆包订单体量仍有限，小微还在内测，现阶段都是"补充 + 占位"，不是马上要产出订单。<br>
+    <b>② 不要相信任何"包 AI 推荐""承诺被引用"的服务商。</b>平台明确不承诺固定排名与稳定引用，敢承诺的要么不懂、要么在骗。<br>
+    <b>③ 不要为了 AI 好看而编造内容。</b>AI 采信的是真实、可验证的公开信息，编造会被风控识别，得不偿失。
+  </div>
+</section>
+
+<!-- ========== 第六章 · 好评技巧 ========== -->
+<section id="ch6">
+  <div class="sec-h">
+    <div class="sec-n">六</div>
+    <div>
+      <h2>要好评的实战技巧与小技巧合集</h2>
+      <p>先看标杆怎么做，再给你一堆能直接照搬的小动作。红线放在下一章——<b>先把"怎么做"讲透。</b></p>
+    </div>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">先立一个判断</span>
+    好评不是"要"来的，是<b>被服务推着写出来的</b>。<br>
+    真正有效的动作都发生在客人开口之前：<b>让他有东西可拍、有细节可写、有人可以夸。</b>
+  </div>
+
+  <h3>6.1 先看标杆：西坡是怎么做的</h3>
+  <p>西坡是国内高端民宿里口碑最稳的品牌之一，莫干山、千岛湖、中卫、象山各店评分长期在 <b>4.8 以上</b>。把它的点评翻一遍会发现，好评高度集中在同一个点上——<b>管家</b>。</p>
+
+  <div class="tscroll">
+  <table style="min-width:680px">
+    <thead><tr><th style="width:20%">西坡的做法</th><th>具体到什么程度</th></tr></thead>
+    <tbody>
+      <tr><td><b>配比</b></td><td>客房与员工比约 <b>1:1.2</b>，基本做到<b>一间房配一位管家</b>，24 小时随时响应</td></tr>
+      <tr><td><b>定位</b></td><td>不是"服务员"，是"<b>和每一个客人成为好朋友</b>"——陪客人看山林日出、静静听客人讲经历</td></tr>
+      <tr><td><b>名字</b></td><td>管家会主动让客人记住自己的名字。客人点评里大量出现"<b>管家米粉</b>""小月""小核桃""瑶瑶""小樱"</td></tr>
+      <tr><td><b>房子的名字</b></td><td>用原房主的名字命名——康敏家、玉芳家、海根家、玉宝家，<b>不用数字门牌</b>，房子因此有了人情味</td></tr>
+      <tr><td><b>吃饭</b></td><td>请当地阿姨、用当地时令果蔬做地道农家菜，主打"<b>家的味道</b>"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h4>从西坡真实点评里扒出来的 12 个动作</h4>
+  <p style="font-size:14px;color:var(--gray)">下面这些都是客人<b>自己写在点评里</b>的——说明他们真的被这些细节打动了。可直接对照自查。</p>
+  <div class="tscroll">
+  <table style="min-width:700px">
+    <thead><tr><th style="width:5%">#</th><th style="width:36%">动作</th><th>为什么客人会记住</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>提前联系，确认到店时间、告知路程与当地气温</td><td>人还没出门，就先感到"被照顾"</td></tr>
+      <tr><td>2</td><td>提前把房间空调开好</td><td>推门那一刻的体感，比任何话术都有效</td></tr>
+      <tr><td>3</td><td>车一到就有人在门口迎、主动帮着提行李</td><td>第一印象的落差感</td></tr>
+      <tr><td>4</td><td>带宠物的，提前备好狗窝、狗碗、宠物零食礼包</td><td>宠物主极度在意"我家狗被接纳"</td></tr>
+      <tr><td>5</td><td>主动询问过敏源并做餐食提醒</td><td>专业感 + 安全感</td></tr>
+      <tr><td>6</td><td>下雨主动问有没有带伞；提前提醒路段限速</td><td>恰好出现在客人需要的那一刻</td></tr>
+      <tr><td>7</td><td>主动推荐"出片打卡点"</td><td><b>直接制造了拍照与发帖的理由</b></td></tr>
+      <tr><td>8</td><td>客人生日送一碗免费长寿面</td><td>惊喜，而且是"额外"的</td></tr>
+      <tr><td>9</td><td>客人赶不上早餐 → 安排外带</td><td>在客人不好意思开口的时候先想到</td></tr>
+      <tr><td>10</td><td>睡前送自制饼干 / 晚安点心</td><td>一天结束时的温柔收尾</td></tr>
+      <tr><td>11</td><td>客人离店后忘带东西 → 立刻送还</td><td>离店后仍在被服务，记忆最深</td></tr>
+      <tr><td>12</td><td>退房赠送本地特色小纪念品</td><td>把"结束"变成"舍不得"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-info">
+    <span class="ttl">西坡的核心不是"服务好"，是"提前想到"</span>
+    这 12 个动作里有 <b>7 个</b>发生在客人开口之前。<br>
+    客人不会为"响应及时"写长评，但会为"<b>我都还没说，你就做到了</b>"写长评。<br>
+    <b>→ 可以复制的心法：每天上班先列一遍"客人今天可能会需要什么"，提前一步做完。</b>
+  </div>
+
+  <h4>西坡的点评回复也值得直接抄</h4>
+  <div class="card">
+    <p style="margin:0 0 8px;font-size:14.5px">西坡回复点评有三个特点，决定了它能不能把"一条好评"变成"下一位客人的决策依据"：</p>
+    <ul style="font-size:14.5px;margin:0">
+      <li><b>带上地名和门店名</b>——"感谢您来西坡象山…"（这本身就是一块会被 AI 抓取的有效信源）</li>
+      <li><b>点名感谢到具体的人</b>——"会把您的鼓励完整地带给大家，<b>尤其是小核桃</b>"。客人会截图，员工也会被激励</li>
+      <li><b>结尾留一句下次的邀请</b>——"等您再来看看海，听听风，像回家一样住上几天"</li>
+    </ul>
+  </div>
+
+  <h3>6.2 底层原理：峰值体验（人只记得高峰和结尾）</h3>
+  <p>客人离店后能记住的，不是"整体还不错"，而是<b>最打动他的那一个瞬间</b>，以及<b>最后的告别方式</b>。所以要把入住拆成四段，每段放一个"峰值触点"。</p>
+
+  <div class="tscroll">
+  <table style="min-width:700px">
+    <thead><tr><th style="width:14%">阶段</th><th style="width:26%">客人心理</th><th>可设计的峰值体验</th></tr></thead>
+    <tbody>
+      <tr><td><b>抵达前</b></td><td>期待 + 焦虑（怕找不到、怕和照片不一样）</td><td>提前发入住提醒：天气、行李建议、路线与停车、当地正在发生什么活动</td></tr>
+      <tr><td><b>入住当下</b></td><td>探索 + 惊喜</td><td>五感同时打开：音乐、香味、迎宾茶点、房间小物、<b>一张手写卡片</b></td></tr>
+      <tr><td><b>住宿过程</b></td><td>放松 + 共鸣</td><td>让主人 / 管家"恰好出现"：夜聊、烤火、一起看日落、在地导览</td></tr>
+      <tr><td><b>退房时刻</b></td><td>感谢 + 不舍</td><td>手写卡片、拍立得合影、伴手礼、再访邀请——<b>这是记忆的封口</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-ok">
+    <span class="ttl">一个已被验证的案例</span>
+    一家位置偏远、客人担心"来一趟值不值"的森林民宿，只做了四件小事：<br>
+    ① 入住前寄出手写风格的提醒邮件（含在地故事）　② 门口摆当季花材与果茶，主人亲自迎接<br>
+    ③ 晚上邀客人一起烤棉花糖、看星星　④ 退房送拍立得合照 + 二维码链接到点评页<br>
+    → 一年后<b>回访率提升 38%</b>，评分稳定在 <b>4.9</b>。客人点评里高频出现的是"<b>被感动</b>""<b>像回家</b>""<b>超暖心</b>"。<br>
+    <b>这些设计几乎没花钱。</b>
+  </div>
+
+  <div class="callout c-warn">
+    <span class="ttl">反过来看：差评多半不是设施问题</span>
+    很多差评的根源不是"房间旧"，而是"<b>情绪没被处理</b>"——入住等太久、需求没人应、投诉无人跟进。这些都能用即时回应化解。<br>
+    <b>高峰能覆盖瑕疵，但前提是瑕疵没有变成新的"峰值"。</b>
+  </div>
+
+  <h3>6.3 小技巧合集（按目的分四组，可直接照搬）</h3>
+
+  <h4>A 组 · 让客人"有得拍"——出片设计</h4>
+  <p style="font-size:14px;color:var(--gray)">点评要图，多数平台至少支持 9 张。<b>所以店里至少要能拍出 9 个不同角度</b>——不用大装修，小物件就够。</p>
+  <div class="card">
+    <div class="grid g2">
+      <div>
+        <p style="margin:0 0 6px"><b>低成本的出片点</b></p>
+        <ul class="ck" style="font-size:14px">
+          <li>手写迎宾板 / 留言板（"Welcome to 湄屿"）</li>
+          <li>仿真绿植——不用打理、不招虫，背景一点绿照片立刻高级</li>
+          <li>当地风景明信片装框挂墙</li>
+          <li>一盏暖光小灯（既是氛围，也是拍照道具）</li>
+          <li>一张设计过的房卡、一顿摆盘讲究的早餐</li>
+          <li>院子里的一个固定"机位"（放把椅子、标记出来）</li>
+        </ul>
+      </div>
+      <div>
+        <p style="margin:0 0 6px"><b>让"拍"变成"发"</b></p>
+        <ul class="ck" style="font-size:14px">
+          <li>入住时顺口提一句："院子里日落特别出片，傍晚可以去看看"</li>
+          <li>房间里放卡片，写上<b>本店专属话题标签</b></li>
+          <li>官方号转发客人的内容，并 <b>@ 客人致谢</b></li>
+          <li>官方号定期更新"本店图库"，客人可直接保存取用</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="callout c-info">
+    <span class="ttl">一个很实用的小动作：把照片"喂"到客人手里</span>
+    客人没拍照 = 点评没图。<br>
+    解法：把店里最美的几个角度提前拍好，放进 <b>门店小程序 / 公众号 / 共享相册</b>，客人扫个码就能保存。<b>他写点评时顺手就上传了。</b>
+  </div>
+
+  <h4>B 组 · 让客人"有得写"——降低写评成本</h4>
+  <div class="card">
+    <p style="margin:0 0 8px"><b>核心逻辑</b>：不是所有人都会写。给他"可写的东西"，比催他写有用得多。</p>
+    <ul style="font-size:14.5px;margin:0">
+      <li>房间里放一张<b>"今天的小提醒"卡片</b>：日出日落时间、附近巷子里的咖啡、今天的集市——客人会记住内容，点评时就有细节可写</li>
+      <li><b>客人开口问过什么，就说明他关心什么。</b>他问过的，写进点评的概率最高——所以每个问题都要认真答</li>
+      <li>告别时留一句"钩子"："您喜欢的那家烧饼，我把定位发您" —— 客人会记住这个细节</li>
+      <li>房间里放留言本 / 留言墙，鼓励写下来。写过一次的人，更愿意在网上再写一次</li>
+    </ul>
+  </div>
+
+  <h4>C 组 · 让客人"有人可夸"——具名化</h4>
+  <div class="callout c-ok">
+    <span class="ttl">这一条最容易被忽略，但性价比最高</span>
+    <b>让服务人员主动报出名字。</b><br>
+    西坡的点评里全是"管家米粉""小月""小核桃"——因为管家在服务时就说清了"我是米粉，有事随时找我"。<br>
+    <b>客人记住名字 → 点评里会出现具体的人 → 这条点评的可信度远高于"服务很好"这类空话。</b><br>
+    <b>门店动作</b>：制服上有名字 / 自我介绍带名字 / 离店时说一句"我是 XX，下次来还找我"。
+  </div>
+
+  <h4>D 组 · 亲子客是优质长评的高产地</h4>
+  <div class="callout c-warn">
+    <span class="ttl">一线经验：写得最长的好评，往往是带娃的妈妈写的</span>
+    有酒店做过统计——旅游城市里最优质的点评，大多出自带孩子入住的妈妈。原因很简单：<b>孩子是她的全部，谁对她孩子好，她会认真写出来。</b><br><br>
+    <b>可以直接照搬的动作：</b>
+    <ul style="margin:8px 0 0">
+      <li>入住时给孩子一个小礼物，同时<b>真诚夸一句孩子</b>（"小朋友眼睛真亮"）</li>
+      <li><b>3 岁以下</b>：入住后 5 分钟内送上儿童洗澡盆和小凳子——让妈妈不用猫着腰给孩子洗澡</li>
+      <li><b>3 岁以上</b>：入住后 5 分钟内送上儿童专用牙膏牙刷</li>
+      <li>退房时如果孩子在，把伴手礼交到<b>孩子手里</b></li>
+    </ul>
+    <p style="margin:10px 0 0"><b>坚持半年，优质长评会明显变多。</b></p>
+  </div>
+
+  <h3>6.4 时机与话术：什么时候说、怎么说</h3>
+  <div class="tscroll">
+  <table style="min-width:700px">
+    <thead><tr><th style="width:24%">要点</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><b>说"写点评"，不说"写好评"</b></td><td>一提到"好"字，客人立刻感到压力，反而降低转化。<b>一句话之差，效果差很多。</b></td></tr>
+      <tr><td><b>黄金窗口：退房后 0.5–2 小时</b></td><td>人还在路上、记忆还热、情绪没散。不在退房当时盯着要——显得急且功利。</td></tr>
+      <tr><td><b>递伴手礼时顺势提一句</b></td><td>"昨晚休息得好吗？今天有空可以给我们写个点评哦"——<b>把礼物和邀请分开说</b>，不要绑成交换。</td></tr>
+      <tr><td><b>当天晚上再补一条问候</b></td><td>"到家了吗？路上顺利吗"——<b>这条消息本身就在提醒他还有件事没做</b>，但完全不显得在催。</td></tr>
+      <tr><td><b>找人，不找所有人</b></td><td>本来就有写评习惯的客人不用管；<b>真正要"要"的是"体验不错、但没习惯写"的那批人</b>。</td></tr>
+      <tr><td><b>按客群找重点</b></td><td>对照平台后台的点评标签，看哪类出游人群（亲子 / 情侣 / 商务）写评最少，就重点攻这一类。</td></tr>
+      <tr><td><b>24 小时内回复好评</b></td><td>花 30 秒回一条，客人感到被重视，也会激励其他客人写。这是<b>合规且有效的"二次展示位"</b>。</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>6.5 分平台打法</h3>
+  <div class="tscroll">
+  <table style="min-width:760px">
+    <thead><tr><th>平台</th><th>打法</th><th>特别提醒</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="plat">携程</td>
+        <td>离店后 0.5–2 小时邀请；引导客人<b>勾选"出游类型"</b>；把服务重心放在会员等级高、点评等级高的客人身上（他们点评权重更高）</td>
+        <td>不给模板、不给关键词卡、不索要截图、不承诺回报</td>
+      </tr>
+      <tr>
+        <td class="plat">去哪儿 / 智行</td>
+        <td>跟随携程动作即可，无独立入口</td>
+        <td>去哪儿是一条订单一次点评机会，钟点房也计分</td>
+      </tr>
+      <tr>
+        <td class="plat">同程</td>
+        <td>窗口长达 <b>180 天</b>，可以覆盖"回访老客"的动作；平台有<b>里程奖励</b>机制（文字与图片越多奖励越高），可如实告知客人</td>
+        <td>告知奖励机制属于"平台既有规则"，<b>不等于我们承诺回报</b>，切勿自行加码</td>
+      </tr>
+      <tr>
+        <td class="plat">飞猪<span class="badge b-orange">国庆后</span></td>
+        <td>守两条：<b>低分评价回复率做到 100%</b>（回一条就有分）；点评分力争 5.0（4.9 只剩 4 分）</td>
+        <td>匿名评价，查不到订单，回评只能靠房型和内容判断</td>
+      </tr>
+      <tr>
+        <td class="plat">小红书</td>
+        <td>引导客人<b>发布带 POI 定位 + 实拍图</b>的笔记，画面里有人 / 环境 / 产品；官方号保持每周 3–5 篇真实场景更新，维持"近 30 天"新鲜度</td>
+        <td>不给文案模板、不指定内容、不谈福利回报</td>
+      </tr>
+      <tr>
+        <td class="plat">抖音</td>
+        <td>团购<b>核销后</b>才可邀评，首次评价窗口只有 <b>15 天</b>，尽量在离店当天完成提醒；引导内容"图文并茂"（至少 1 图 15 字）</td>
+        <td>可"适度提醒"，但不得干预客人是否评价、何时评价、如何评价；每条评价只有 1 次回复机会</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>6.6 话术库（点击右上角复制）</h3>
+  <h4>① 携程系 · 离店后邀评（微信 / 平台内私信）</h4>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">X先生／女士您好，我是湄屿XX的店长XX。今天退房还顺利吗？
+如果房间、早餐或者服务上有哪里让您觉得不方便的，您直接跟我说，我这边马上改。
+这几天的体验如果让您觉得舒服，也欢迎您在携程上分享您的真实感受，对我们这种小店帮助真的很大。
+不打扰您了，祝您一路顺风。</p>
+    <span class="note">要点：先问体验、再发出邀请；不承诺任何回报、不指定星级、不给模板、不索要截图。</span>
+  </div>
+
+  <h4>② 小红书 · 引导带 POI 的真实笔记</h4>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">谢谢您这几天的入住～
+如果喜欢院子里的日落，方便的话可以在小红书发条笔记记录一下，记得加上我们门店的定位就好。
+您随意写就行，不用特意夸我们，真实感受最有参考价值。</p>
+    <span class="note">要点：只提"记录"和"加定位"，不指定内容、不给文案、不谈任何回报。</span>
+  </div>
+
+  <h4>③ 抖音 · 核销后适度提醒</h4>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">您的团购已经核销好啦～
+这次如果住得还满意，欢迎在抖音上留个评价，随手写几句真实感受就行。
+有哪里不满意也麻烦直接告诉我们，我们会马上处理，谢谢您。</p>
+    <span class="note">要点：核销后再邀评；只"适度提醒"，不催、不盯、不代办。</span>
+  </div>
+
+  <h4>④ 同程 · 告知平台奖励机制（不自行加码）</h4>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">顺便跟您说一声，同程平台上写点评是由平台给里程奖励的——写得越详细、图片越多，平台给的里程越多，里程可以抵房费或者换东西。
+您要是愿意记录一下，就在同程订单里评价就行，我们这边不做任何额外承诺哈。</p>
+    <span class="note">要点：如实告知平台规则，明确"我们不额外承诺"，避免把自己卷进利益交换。</span>
+  </div>
+
+  <h4>⑤ 好评回复模板</h4>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">谢谢您把细节记得这么清楚，尤其是您提到的那一段，我们看了很受鼓舞。
+您提的那条建议我们已经记下来并且做了调整，下次您再来的时候应该会感受到变化。
+期待您再来，到时候院子里的花应该开得更好了。</p>
+    <span class="note">要点：具体、有回应、有后续动作，避免千篇一律的套话。</span>
+  </div>
+
+  <h4>⑥ 差评回复公式与示例</h4>
+  <div class="card tight" style="background:#FAFBFF">
+    <p style="margin:0 0 8px"><b>公式</b>：<span class="mono">感谢 + 歉意 + 重视 + 原因 + 解决方案 + 预防措施 + 期待再次体验</span></p>
+    <p style="margin:0;font-size:14px">要求：实事求是说明情况，<b>用"已经改进"替代"我们将会改进"</b>；不在评论区争辩；不留站外联系方式，如需转私聊一律走平台内私信。</p>
+  </div>
+  <div class="script">
+    <button class="copy">复制</button>
+    <p class="txt">很抱歉这次让您失望了。
+您提到的床品问题我们已经核实，当天确实是我们布草检查这一环没做到位，责任在我们。
+处理措施：该房型布草已全部更换，同时增加了领班二次查房、拍照留档的流程，避免同类问题再发生。
+给您造成的困扰我们诚恳道歉，也感谢您把问题直接告诉我们——这类反馈对我们改进非常重要。
+如果您愿意再给我们一次机会，可以通过平台内私信联系店长，我们一定做得比这次好。</p>
+    <span class="note">要点：认问题 → 给具体动作 → 用完成时 → 留平台内私信口。24 小时内回复。</span>
+  </div>
+
+  <h3>6.7 一线执行纪律（三句口诀）</h3>
+  <div class="grid g3">
+    <div class="card tight" style="border-left:4px solid var(--blue)">
+      <p style="margin:0"><b>礼品前置，不提评价</b></p>
+    </div>
+    <div class="card tight" style="border-left:4px solid var(--blue)">
+      <p style="margin:0"><b>不给模板，不要截图</b></p>
+    </div>
+    <div class="card tight" style="border-left:4px solid var(--blue)">
+      <p style="margin:0"><b>只做邀请，不做交换</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 第七章 · 合规红线 ========== -->
+<section id="ch7">
+  <div class="sec-h">
+    <div class="sec-n">七</div>
+    <div>
+      <h2>合规红线：什么能做，什么绝对不能做</h2>
+      <p>上一章讲的全是能做的事。这一章只讲一件事——<b>把「礼品」和「评价」彻底分开</b>，别让一个动作把前面的努力全废掉。</p>
+    </div>
+  </div>
+
+  <div class="callout c-danger">
+    <span class="ttl">核心结论先说</span>
+    <b>礼品是"惊喜服务"，不是"评价对价"。</b><br>
+    送的时候不提评价；要评价的时候不提礼品。
+  </div>
+
+  <h3>7.1 各平台对"利益换评价"的口径</h3>
+  <div class="tscroll">
+  <table style="min-width:760px">
+    <thead><tr><th>平台</th><th>官方口径</th><th>落到我们身上的约束</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="plat">携程</td>
+        <td>「受利益干扰的点评」明确包含：受酒店利益交换（<b>金钱、免费餐食、礼品、折扣等</b>）所写的点评。官方举例：<b>「写好评送早餐」「写好评升级房型」</b>。同时禁止查验写评结果、索要点评截图、使用酒店提供的模板内容、AIGC 代写。</td>
+        <td>处罚为<b>点评分扣除 + 违规点评删除</b>，一直跟到该条点评自然过期（3 年）。每月平台公示治理名单。</td>
+      </tr>
+      <tr>
+        <td class="plat">小红书</td>
+        <td>不允许通过<b>好评返现、好评免单</b>等手段诱导消费者进行好评。9 月 18 日起导流监管场景进一步扩容，私信、群聊、商品售后链路全部纳入。</td>
+        <td>诱导好评 + 导流双重风险，且处罚可关联至同主体其他账号。</td>
+      </tr>
+      <tr>
+        <td class="plat">抖音</td>
+        <td>不得以<b>返现、赠品、优惠券、补偿</b>等引导客人发布<b>指定星级、指定文案或特定倾向</b>的评价；不得在客人<b>未实际消费</b>前索评；不得把履约环节与好评绑定。</td>
+        <td>评分不展示 + 榜单下榜，7 → 14 → 21 → 30 天递增。</td>
+      </tr>
+      <tr>
+        <td class="plat">飞猪</td>
+        <td>评价应客观、真实，与交易的商品或服务具有关联性。</td>
+        <td>评分异常会被回滚；虚假评价经判定后进行评分剔除，T+1 更新。</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>7.2 「礼品 ≠ 评价对价」改造对照表</h3>
+  <p>这不是"什么都不能做"，而是<b>把动作换一种做法</b>——体验照样给，评价照样要，但两者不挂钩。</p>
+  <div class="tscroll">
+  <table style="min-width:760px">
+    <thead><tr><th>不能这样做</th><th>改成这样做</th><th>为什么</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>送下午茶 / 冰淇淋球 / 气球，条件是"写个好评"</td>
+        <td>入住或用餐过程中<b>主动、无条件赠送</b>，当场<b>不提评价</b>；作为标准服务的一部分，所有人都给</td>
+        <td>礼品一旦与评价挂钩，就构成"利益交换"，携程官方举例即属违规</td>
+      </tr>
+      <tr>
+        <td>给客人一段现成文案 / 一张"关键词卡"照抄</td>
+        <td>什么都不给。客人自己写，写多写少、写好写坏都接受</td>
+        <td>携程明文禁止"使用酒店提供的点评内容（图片、文字、模板等）所写的点评"</td>
+      </tr>
+      <tr>
+        <td>请客人写完给我们看一眼，或拍照 / 截图留存</td>
+        <td><b>不查验、不索要、不拍摄。</b>客人写完就结束了</td>
+        <td>携程把"查验用户写评结果"直接列为违规行为</td>
+      </tr>
+      <tr>
+        <td>当场盯着客人写完，写完了才给东西</td>
+        <td>退房后 <b>0.5–2 小时</b>，通过平台内私信或微信<b>事后邀请</b>；客人是否写、什么时候写、写什么，全部自主</td>
+        <td>抖音新规明确禁止"频繁催评、盯着消费者当场填写、查验评价内容"</td>
+      </tr>
+      <tr>
+        <td>"给个五星好评，下次来给您打九折"</td>
+        <td>"如果这几天住得舒服，欢迎分享您的真实体验"——<b>不承诺任何回报</b></td>
+        <td>指定星级 + 利益承诺，同时踩中携程与抖音</td>
+      </tr>
+      <tr>
+        <td>不管实际情况，对着所有客人一律要好评</td>
+        <td><b>先问体验，再谈评价。</b>客人反馈好，顺势邀请；客人有不满，<b>当场解决问题</b>，不要评价</td>
+        <td>把差评消灭在"客人开口之前"，比事后补救有效得多</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout c-warn">
+    <span class="ttl">一句话收尾</span>
+    在携程，差评删不掉，违规扣的分也回不来——<b>而且一扣就是三年</b>。
+    与其琢磨怎么"把好评要过来"，不如把力气花在"让客人自己想写"。
+  </div>
+</section>
+
+<!-- ========== 附录 ========== -->
+<section id="apx">
+  <div class="sec-h">
+    <div class="sec-n">附</div>
+    <div>
+      <h2>速查表与现场小测</h2>
+      <p>一页纸记住关键数字。</p>
+    </div>
+  </div>
+
+  <h3>附录 A · 一页纸速查</h3>
+  <div class="tscroll">
+  <table style="min-width:720px">
+    <thead><tr><th>关键项</th><th>携程</th><th>去哪儿</th><th>同程</th><th>智行</th><th>飞猪</th><th>小红书</th><th>抖音</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>首次评价开放</b></td>
+        <td>离店日14:00后</td><td>入住日14:00后</td><td>离店日14:00后</td><td>离店日14:00后</td><td>离店当天14:00</td><td>交易成功后</td><td>订单完成后</td>
+      </tr>
+      <tr>
+        <td><b>窗口截止</b></td>
+        <td>90天</td><td>90天</td><td><b>180天</b></td><td>90天</td><td>90天24点</td><td>90天</td><td>首次<b>15天</b>／追评180天</td>
+      </tr>
+      <tr>
+        <td><b>可修改</b></td>
+        <td>✕</td><td>✓1次</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td><td>✕</td>
+      </tr>
+      <tr>
+        <td><b>可追评</b></td>
+        <td>✓1次</td><td>✕</td><td>✕</td><td>✕</td><td>预付单✓</td><td>无</td><td>✓（不计分）</td>
+      </tr>
+      <tr>
+        <td><b>计分范围</b></td>
+        <td>近3年</td><td>近3年</td><td>近3年</td><td>融合分</td><td>近2年</td><td>近180天</td><td>随时间衰减</td>
+      </tr>
+      <tr>
+        <td><b>计分门槛</b></td>
+        <td>自由≥5条</td><td>—</td><td>—</td><td>—</td><td><b>≥5条</b></td><td>—</td><td>过审评价达门槛</td>
+      </tr>
+      <tr>
+        <td><b>取整方式</b></td>
+        <td><b>向下取整</b></td><td>—</td><td><b>向下取整</b></td><td>—</td><td>—</td><td>—</td><td>—</td>
+      </tr>
+      <tr>
+        <td><b>商家回复窗口</b></td>
+        <td>—</td><td>—</td><td>—</td><td>—</td><td>180天内</td><td>—</td><td>每条限1次</td>
+      </tr>
+      <tr>
+        <td><b>目标分</b></td>
+        <td>≥4.7"超棒"</td><td>—</td><td>—</td><td>—</td><td>冲5.0</td><td>—</td><td>冲高 &amp; 保新鲜</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>附录 B · 现场小测</h3>
+  <p style="font-size:14px;color:var(--gray)">点选项即出结果。</p>
+
+  <div class="quiz" data-ans="答：不能。携程官方把「受利益交换、为获得金钱/免费餐食/礼品/折扣所写的点评」明确列为违规，例子就是「写好评送早餐」。礼品必须前置、无条件、当场不提评价。">
+    <p class="q">1. 客人写完后，我们把下午茶券送过去，说"谢谢您的好评"。可以吗？</p>
+    <div class="opts">
+      <button class="opt" data-ok="0">可以，态度好一点就行</button>
+      <button class="opt" data-ok="1">不可以，属于利益交换换好评</button>
+      <button class="opt" data-ok="0">可以，只要不当面说</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <div class="quiz" data-ans="答：4.7。携程外网展示分是向下取一位小数，不是四舍五入。4.79 会显示成 4.7——所以差 0.01 就是真的差一档。">
+    <p class="q">2. 后台显示 4.79 分，客人在外网看到的是多少？</p>
+    <div class="opts">
+      <button class="opt" data-ok="0">4.8</button>
+      <button class="opt" data-ok="1">4.7</button>
+      <button class="opt" data-ok="0">4.79</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <div class="quiz" data-ans="答：不对。在携程，同一客人半年内同一家店的多条点评，如果既有≥3分又有<3分，会保留两条（各取最新入住的一条）。补一条好评盖不掉差评，两条会同屏展示。">
+    <p class="q">3. 客人给了差评，让他再下一单补个好评，差评就没了。对吗？</p>
+    <div class="opts">
+      <button class="opt" data-ok="0">对，补好评就能覆盖</button>
+      <button class="opt" data-ok="1">不对，好评差评会被同时保留</button>
+      <button class="opt" data-ok="0">对，但要控分在2.7左右</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <div class="quiz" data-ans="答：不给。携程明文禁止「使用酒店提供的点评内容（图片、文字、模板等）所写的点评」和「查验用户写评结果（索要截图）」。给关键词卡、要截图，都属于违规。">
+    <p class="q">4. 为了引导客人写出对我们有利的好评，可以准备一张关键词卡让他照着写、写完发截图吗？</p>
+    <div class="opts">
+      <button class="opt" data-ok="1">不可以，给模板和索要截图都违规</button>
+      <button class="opt" data-ok="0">可以，只要客人自愿</button>
+      <button class="opt" data-ok="0">可以，其他店都这么做</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <div class="quiz" data-ans="答：15 天。抖音团购只有首次评价参与打分，追评不计入好中差评。首次评价窗口只有订单完成后 15 天，是最容易「错过就没了」的平台。">
+    <p class="q">5. 抖音团购的评价，首次评价窗口和计分规则是？</p>
+    <div class="opts">
+      <button class="opt" data-ok="0">90天内可评，追评也计分</button>
+      <button class="opt" data-ok="1">15天内首次评价，只有首次计分</button>
+      <button class="opt" data-ok="0">180天内可评，随时可改</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <div class="quiz" data-ans="答：不能。豆包官方明确「商家不能通过付费影响推荐或排序」，推荐位不卖——只在订单成交后才收渠道服务费（约 12%）。想被 AI 推荐，靠的是完善门店信息、做真实内容，让 AI「认识你、信任你」。">
+    <p class="q">6. 想让豆包优先推荐我们门店，可以直接找平台买推荐位吗？</p>
+    <div class="opts">
+      <button class="opt" data-ok="0">可以，加钱就能排前面</button>
+      <button class="opt" data-ok="1">不能，官方明确付费不能影响推荐排序</button>
+      <button class="opt" data-ok="0">可以，通过服务商代投就行</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="fsig">张世鑫<span class="dot"></span>AI</p>
+    <p class="fmotto">把 AI 变成店里最得力的员工</p>
+    <p class="fhandle">酒店民宿 AI 实战派 · 全网同名「张世鑫AI」</p>
+    <p><strong>湄屿宿集 · 全域平台点评规则与好评技巧培训</strong></p>
+    <p>编制日期 2026-09-17 ｜ 规则口径以各平台商家后台实时公示为准，平台规则不定期修订，建议每 90 天复核一次。</p>
+    <p style="margin-top:14px;font-size:12.5px">
+      📎 培训后另行下发附件：《小红书私信获客工具配置 SOP》与《邀评话术合规对照表》<br>
+      🌱 飞猪相关实操动作自国庆节后启动，本期先完成规则认知对齐。
+    </p>
+  </div>
+</footer>
+
+<button class="totop" id="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+/* ---------- Tabs ---------- */
+document.querySelectorAll('[data-tabs]').forEach(function(group){
+  group.addEventListener('click',function(e){
+    var t=e.target.closest('.tab'); if(!t) return;
+    group.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+    var scope=group.parentNode;
+    scope.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+    var target=scope.querySelector('#'+t.dataset.tab);
+    if(target) target.classList.add('on');
+  });
+});
+
+/* ---------- Copy ---------- */
+function fallbackCopy(txt,cb){
+  var ta=document.createElement('textarea');
+  ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{document.execCommand('copy');cb();}catch(e){alert('复制失败，请手动选中文字复制');}
+  document.body.removeChild(ta);
+}
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var box=btn.closest('.script');
+    var txt=box.querySelector('.txt').innerText;
+    function done(){
+      btn.classList.add('done'); btn.textContent='已复制';
+      setTimeout(function(){btn.classList.remove('done');btn.textContent='复制';},1600);
+    }
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(txt).then(done).catch(function(){fallbackCopy(txt,done)});
+    }else{fallbackCopy(txt,done);}
+  });
+});
+
+/* ---------- 评分测算 ---------- */
+function floor1(x){return Math.floor(x*10)/10;}
+function calcScore(){
+  var out=document.getElementById('scoreOut');
+  var s=parseFloat(document.getElementById('cur').value);
+  var n=parseFloat(document.getElementById('cnt').value);
+  var d=parseFloat(document.getElementById('bad').value);
+  var t=parseFloat(document.getElementById('tgt').value);
+  if(isNaN(s)||isNaN(n)||isNaN(d)||n<=0){
+    out.innerHTML='<span class="warn">请输入有效数值（条数需大于 0）。</span>';return;
+  }
+  var after=(s*n+d)/(n+1);
+  var back='';
+  if(t>=5){
+    back='<span class="warn">目标分为 5.00 时，除非所有历史点评都是满分，否则永远无法达到。</span>';
+  }else if(after>=t){
+    back='<span class="good">这条评价没有把分数拉到目标线以下，无需补分。</span>';
+  }else{
+    var need=Math.ceil((t*(n+1)-s*n-d)/(5-t));
+    back='要回到 <b>'+t.toFixed(2)+'</b> 分，需要新增约 <span class="v">'+need+' 条</span> 五星好评。';
+  }
+  var drop='';
+  if(d<5){
+    drop='<span class="k">这条评价使总分下降：</span><span class="v">'+(s-after).toFixed(2)+'</span> 分<br>';
+    if(d<3&&s<5){
+      drop+='<span class="k">单条抵消所需五星数量（约）：</span><span class="v">'+Math.ceil((5-d)/(5-s))+'</span> 条<br>';
+    }
+  }
+  out.innerHTML=
+    '<span class="k">新增这条评价后总分：</span><span class="v">'+after.toFixed(2)+'</span><br>'+
+    '<span class="k">外网实际显示（向下取整）：</span>'+
+    '<span class="'+(floor1(after)<floor1(s)?'warn':'good')+'">'+floor1(after).toFixed(1)+'</span>'+
+    (floor1(after)<floor1(s)?'　←　<b>标签档位掉了</b>':'　←　档位未掉')+'<br>'+
+    drop+back+
+    '<br><span class="k" style="font-size:13px">※ 近似演示，真实算法为加权平均（含新鲜度、可信度）。</span>';
+}
+
+/* ---------- 取整演示 ---------- */
+function calcRound(){
+  var r=parseFloat(document.getElementById('raw').value);
+  var out=document.getElementById('roundOut');
+  if(isNaN(r)){out.innerHTML='<span class="warn">请输入有效分数。</span>';return;}
+  var base=floor1(r);
+  var shown=base;
+  var label=shown>=4.7?'超棒':(shown>=4.5?'很好':'达标线以下');
+  var next=(base+0.1).toFixed(1);
+  out.innerHTML=
+    '<span class="k">后台实际分：</span><span class="v">'+r.toFixed(3)+'</span><br>'+
+    '<span class="k">外网展示分（向下取整）：</span><span class="v">'+shown.toFixed(1)+'</span><br>'+
+    '<span class="k">外网标签：</span><span class="good">'+label+'</span><br>'+
+    '<span class="k">距离升档还差：</span><span class="warn">'+((base+0.1)-r).toFixed(3)+'</span> 分（需补到 '+next+' 才升档）';
+}
+
+/* ---------- Quiz ---------- */
+document.querySelectorAll('.quiz').forEach(function(q){
+  var ans=q.querySelector('.ans');
+  q.querySelectorAll('.opt').forEach(function(o){
+    o.addEventListener('click',function(){
+      var ok=o.dataset.ok==='1';
+      o.classList.add(ok?'right':'wrong');
+      ans.textContent=q.dataset.ans;
+      ans.classList.add('show');
+    });
+  });
+});
+
+/* ---------- Top button ---------- */
+var topBtn=document.getElementById('totop');
+window.addEventListener('scroll',function(){
+  topBtn.classList.toggle('show',window.scrollY>600);
+});
+</script>
+</body>
+</html>
