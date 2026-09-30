@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { marked } from 'marked';
 import { skillDocs } from '../skillDocs';
 
@@ -19,7 +19,7 @@ export default function SkillDoc() {
     return (
       <div style={{ minHeight: '100vh', background: '#f7f7f4', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 16 }}>
         <p style={{ color: '#5a6472', fontSize: 15 }}>没有找到这个 Skill 的说明页。</p>
-        <Link to="/" style={{ color: '#2563eb', fontSize: 14 }}>← 返回首页</Link>
+        <a href="/#alumni" style={{ color: '#2563eb', fontSize: 14 }}>← 返回 Skill 资源库</a>
       </div>
     );
   }
@@ -48,8 +48,8 @@ export default function SkillDoc() {
             gap: 16,
           }}
         >
-          <Link
-            to="/"
+          <a
+            href="/#alumni"
             style={{
               fontFamily: "'GeistMono', monospace",
               fontSize: 12,
@@ -58,11 +58,13 @@ export default function SkillDoc() {
               textDecoration: 'none',
             }}
           >
-            ← 返回 Skill 社区
-          </Link>
+            ← 返回 Skill 资源库
+          </a>
           <a
             href={doc.download}
-            download
+            download={doc.download.startsWith('/') ? true : undefined}
+            target={doc.download.startsWith('/') ? undefined : '_blank'}
+            rel={doc.download.startsWith('/') ? undefined : 'noopener noreferrer'}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -82,7 +84,7 @@ export default function SkillDoc() {
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" x2="12" y2="3" />
             </svg>
-            下载
+            {doc.download.startsWith('/') ? '下载' : '前往开源项目'}
           </a>
         </div>
       </div>
