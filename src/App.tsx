@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
@@ -12,6 +13,15 @@ import CapabilityDetail from './sections/CapabilityDetail';
 import SkillDoc from './sections/SkillDoc';
 
 function HomePage() {
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(decodeURIComponent(hash))?.scrollIntoView({ block: 'start' });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <div
       style={{
