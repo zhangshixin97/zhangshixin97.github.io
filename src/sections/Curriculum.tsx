@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { capabilitiesConfig } from '../config';
 
 export default function Curriculum() {
-  const navigate = useNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -91,11 +90,11 @@ export default function Curriculum() {
         {/* 玻璃卡片 2×2 */}
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 28 }}>
           {capabilitiesConfig.items.map((item, i) => (
-            <div
+            <Link
+              to={`/capability/${item.slug}`}
               key={item.slug}
               data-reveal
               data-delay={String((i % 2) * 0.12)}
-              onClick={() => navigate(`/capability/${item.slug}`)}
               className={`group ${
                 i === capabilitiesConfig.items.length - 1 && capabilitiesConfig.items.length % 2 === 1
                   ? 'md:col-span-2'
@@ -103,6 +102,8 @@ export default function Curriculum() {
               }`}
               style={{
                 position: 'relative',
+                textDecoration: 'none',
+                color: '#101418',
                 background: 'rgba(255,255,255,0.75)',
                 backdropFilter: 'blur(14px)',
                 border: '1px solid rgba(16,20,24,0.08)',
@@ -231,7 +232,7 @@ export default function Curriculum() {
                 {capabilitiesConfig.detailHint}
                 <span data-arrow style={{ transition: 'transform 0.35s ease', display: 'inline-block' }}>→</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
