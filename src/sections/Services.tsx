@@ -1,19 +1,20 @@
+// 服务结构沿用 2026 年 9 月对外合作 V1；建议价格待商务确认，不在此公开。
 const services = [
   {
     title: '酒店团队 AI 实战培训',
     audience: '适合酒店老板、店长、前厅与运营团队，以及组织商家培训的渠道伙伴。',
     problem: '团队知道 AI 有用，却不知道每天从哪件事开始。',
     outputs: ['围绕门店岗位的实操课程与演示', '可复用的提示词、模板和操作清单', '课后执行任务与复核要点'],
-    format: '线上专题或线下专场；课时、人数与课程范围按需求确认。',
+    format: '启蒙课、场景实操课、线下工作坊或企业专题培训；按对象与课题确定形式。',
     note: '涉及付费工具、账号或系统的练习，开课前确认使用条件。',
     action: '咨询团队培训',
   },
   {
-    title: '酒店经营顾问与陪跑',
+    title: '企业 AI 诊断与经营顾问',
     audience: '适合已有门店的经营者、连锁运营团队和酒店代运营公司。',
     problem: '渠道、内容与日常运营问题很多，需要先找出值得优先解决的环节。',
-    outputs: ['经营现状梳理与问题优先级', '约定范围内的行动计划与责任分工', '按约定节点复盘进展、调整动作'],
-    format: '先确认问题和数据条件，再确定单次咨询或阶段陪跑。',
+    outputs: ['在约定范围内开展调研与访谈', '形成问题清单与 AI 落地路线图', '确认优先场景、责任分工与阶段验收指标'],
+    format: '先确认问题、门店数与访谈范围；深度方案进入付费诊断，持续顾问支持另行约定。',
     note: '经营结果受门店产品、市场和执行影响，不承诺固定营收增长。',
     action: '咨询经营顾问',
   },
@@ -50,6 +51,11 @@ export default function Services() {
               <a href="#footer" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 48, padding: '12px 16px', borderRadius: 12, background: '#2563eb', color: '#fff', fontWeight: 600, textDecoration: 'none' }}>{service.action}</a>
             </article>
           ))}
+        </div>
+        <div style={{ marginTop: 40, padding: 28, border: '1px solid #dce1e8', borderRadius: 16 }}>
+          <h3 style={{ fontSize: 21, fontWeight: 700, marginBottom: 12 }}>渠道与企业合作</h3>
+          <p style={{ lineHeight: 1.8 }}>支持联合售课、渠道包场和项目合作。先确定客户、首个课题或项目机会，再约定邀约、交付、线索归属与结算责任。</p>
+          <p style={{ fontSize: 14, lineHeight: 1.8, marginTop: 12, color: '#5a6472' }}>系统销售沿用原有政策，课程与项目单独确认范围和费用。企业实施与陪跑先做需求判断，再正式报价。</p>
         </div>
         <div style={{ marginTop: 40, padding: 28, background: '#eef3ff', borderRadius: 16 }}>
           <h3 style={{ fontSize: 21, fontWeight: 700, marginBottom: 12 }}>怎么开始合作</h3>
