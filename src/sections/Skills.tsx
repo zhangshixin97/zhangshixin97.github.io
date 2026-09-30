@@ -9,7 +9,22 @@ export default function Skills() {
   const rootRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const firstReveal = useRef(false);
-  const [filter, setFilter] = useState<string>(ALL);
+  const [filter, setFilter] = useState<string>(() => {
+    try {
+      const saved = sessionStorage.getItem('shixin-skill-category');
+      return saved && skillsConfig.groups.some((group) => group.categories.some((category) => category.name === saved)) ? saved : ALL;
+    } catch {
+      return ALL;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('shixin-skill-category', filter);
+    } catch {
+      // 分类保存不可用时，筛选仍然可以正常使用。
+    }
+  }, [filter]);
 
   // 所有分类（去重，带计数），用于筛选 Tab
   const tabs = useMemo(() => {
@@ -113,7 +128,7 @@ export default function Skills() {
       id="alumni"
       ref={rootRef}
       className="relative kv-grain"
-      style={{ padding: '120px 5vw', background: '#ffffff' }}
+      style={{ padding: '120px 5vw', background: '#ffffff', scrollMarginTop: 88 }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {/* 区块头 */}
@@ -180,6 +195,8 @@ export default function Skills() {
             return (
               <button
                 key={tab.name}
+                type="button"
+                aria-pressed={active}
                 onClick={() => setFilter(tab.name)}
                 style={{
                   flexShrink: 0,
