@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
+import Services from './sections/Services';
 import About from './sections/About';
 import Curriculum from './sections/Curriculum';
 import Skills from './sections/Skills';
@@ -23,6 +24,7 @@ function HomePage() {
 
       <main>
         <Hero />
+        <Services />
         <About />
         <Curriculum />
         <Blueprint />
