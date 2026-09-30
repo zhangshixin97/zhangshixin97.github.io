@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { siteConfig, capabilityDetailConfig } from '../config';
 
@@ -6,12 +7,19 @@ const SLUGS = Object.keys(capabilityDetailConfig.capabilities);
 export default function CapabilityDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   const data = slug ? capabilityDetailConfig.capabilities[slug] : null;
 
   if (!data) {
     return (
       <div style={{ background: '#f7f7f4', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ color: '#5a6472', fontFamily: "'Inter', sans-serif" }}>{capabilityDetailConfig.notFoundText || 'Not found.'}</p>
+        <div style={{ padding: 24, textAlign: 'center' }}>
+          <p style={{ color: '#5a6472' }}>{capabilityDetailConfig.notFoundText || '没有找到这个能力介绍。'}</p>
+          <a href="/#curriculum" style={{ display: 'inline-block', marginTop: 20, color: '#2563eb' }}>返回实战落地介绍</a>
+        </div>
       </div>
     );
   }
@@ -174,6 +182,15 @@ export default function CapabilityDetail() {
             );
           })}
         </article>
+
+        <section aria-labelledby="capability-contact-title" style={{ maxWidth: 860, margin: '0 auto', padding: '0 5vw 64px' }}>
+          <div style={{ padding: 28, borderRadius: 20, background: '#eef3ff', border: '1px solid #dce5fa' }}>
+            <h2 id="capability-contact-title" style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>这项能力适合你的门店吗？</h2>
+            <p style={{ lineHeight: 1.8, marginBottom: 16 }}>咨询时说明门店或团队情况、现用系统，以及最希望解决的一个问题。合作前先确认输入数据、交付范围、账号权限、执行负责人和验收条件。</p>
+            <p style={{ lineHeight: 1.8, fontSize: 14, color: '#5a6472', marginBottom: 24 }}>页面介绍用于说明方向；具体自动化程度以系统能力、实际授权和试点验证为准。涉及调价、投放预算或对外发布时，合作前约定人工确认与异常处理规则。</p>
+            <a href="/#footer" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 48, padding: '12px 24px', background: '#2563eb', color: '#fff', borderRadius: 12, textDecoration: 'none', fontWeight: 600 }}>联系世鑫，咨询这项服务</a>
+          </div>
+        </section>
 
         {/* Prev / Next navigation */}
         <div style={{ maxWidth: 860, margin: '0 auto', padding: '0 5vw 120px' }}>
