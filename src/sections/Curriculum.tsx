@@ -9,6 +9,7 @@ export default function Curriculum() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const targets = root.querySelectorAll<HTMLElement>('[data-reveal]');
     targets.forEach((t) => gsap.set(t, { opacity: 0, y: 48 }));
 
@@ -31,7 +32,7 @@ export default function Curriculum() {
       { threshold: 0.15 }
     );
     targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); gsap.killTweensOf(targets); };
   }, []);
 
   return (

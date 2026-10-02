@@ -57,6 +57,10 @@ export default function Skills() {
   const animateCards = () => {
     const cards = gridRef.current?.querySelectorAll('[data-card]');
     if (!cards || cards.length === 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(cards, { clearProps: 'opacity,transform' });
+      return;
+    }
     gsap.fromTo(
       cards,
       { opacity: 0, y: 22, scale: 0.97 },
@@ -68,6 +72,7 @@ export default function Skills() {
   useEffect(() => {
     const el = gridRef.current;
     if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { firstReveal.current = true; return; }
     const cards = el.querySelectorAll('[data-card]');
     gsap.set(cards, { opacity: 0, y: 22 });
     const io = new IntersectionObserver(
@@ -98,6 +103,7 @@ export default function Skills() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const targets = root.querySelectorAll<HTMLElement>('[data-reveal]');
     targets.forEach((t) => gsap.set(t, { opacity: 0, y: 36 }));
 
@@ -120,7 +126,7 @@ export default function Skills() {
       { threshold: 0.1 }
     );
     targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); gsap.killTweensOf(targets); };
   }, []);
 
   return (

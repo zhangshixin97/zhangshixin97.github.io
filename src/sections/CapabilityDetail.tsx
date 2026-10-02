@@ -121,7 +121,7 @@ export default function CapabilityDetail() {
             <div style={{ marginTop: 48 }}>
               <video
                 src={data.video}
-                autoPlay
+                preload="none"
                 muted
                 loop
                 playsInline

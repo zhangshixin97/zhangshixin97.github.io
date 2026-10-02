@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
@@ -9,8 +9,8 @@ import Skills from './sections/Skills';
 import Avatar from './sections/Avatar';
 import Blueprint from './sections/Blueprint';
 import Footer from './sections/Footer';
-import CapabilityDetail from './sections/CapabilityDetail';
-import SkillDoc from './sections/SkillDoc';
+const CapabilityDetail = lazy(() => import('./sections/CapabilityDetail'));
+const SkillDoc = lazy(() => import('./sections/SkillDoc'));
 
 function HomePage() {
   useEffect(() => {
@@ -65,11 +65,13 @@ function NotFoundPage() {
 
 export default function App() {
   return (
+    <Suspense fallback={<main role="status" style={{ padding: 32 }}>正在加载内容… <a href="/">返回首页</a></main>}>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/capability/:slug" element={<CapabilityDetail />} />
       <Route path="/skill/:slug" element={<SkillDoc />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
+    </Suspense>
   );
 }
