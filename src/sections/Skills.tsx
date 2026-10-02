@@ -9,7 +9,22 @@ export default function Skills() {
   const rootRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const firstReveal = useRef(false);
-  const [filter, setFilter] = useState<string>(ALL);
+  const [filter, setFilter] = useState<string>(() => {
+    try {
+      const saved = sessionStorage.getItem('shixin-skill-category');
+      return saved && skillsConfig.groups.some((group) => group.categories.some((category) => category.name === saved)) ? saved : ALL;
+    } catch {
+      return ALL;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem('shixin-skill-category', filter);
+    } catch {
+      // 分类保存不可用时，筛选仍然可以正常使用。
+    }
+  }, [filter]);
 
   // 所有分类（去重，带计数），用于筛选 Tab
   const tabs = useMemo(() => {
@@ -42,6 +57,10 @@ export default function Skills() {
   const animateCards = () => {
     const cards = gridRef.current?.querySelectorAll('[data-card]');
     if (!cards || cards.length === 0) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(cards, { clearProps: 'opacity,transform' });
+      return;
+    }
     gsap.fromTo(
       cards,
       { opacity: 0, y: 22, scale: 0.97 },
@@ -53,6 +72,7 @@ export default function Skills() {
   useEffect(() => {
     const el = gridRef.current;
     if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { firstReveal.current = true; return; }
     const cards = el.querySelectorAll('[data-card]');
     gsap.set(cards, { opacity: 0, y: 22 });
     const io = new IntersectionObserver(
@@ -83,6 +103,7 @@ export default function Skills() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const targets = root.querySelectorAll<HTMLElement>('[data-reveal]');
     targets.forEach((t) => gsap.set(t, { opacity: 0, y: 36 }));
 
@@ -105,7 +126,7 @@ export default function Skills() {
       { threshold: 0.1 }
     );
     targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); gsap.killTweensOf(targets); };
   }, []);
 
   return (
@@ -113,7 +134,7 @@ export default function Skills() {
       id="alumni"
       ref={rootRef}
       className="relative kv-grain"
-      style={{ padding: '120px 5vw', background: '#ffffff' }}
+      style={{ padding: '120px 5vw', background: '#ffffff', scrollMarginTop: 88 }}
     >
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
         {/* 区块头 */}
@@ -180,6 +201,8 @@ export default function Skills() {
             return (
               <button
                 key={tab.name}
+                type="button"
+                aria-pressed={active}
                 onClick={() => setFilter(tab.name)}
                 style={{
                   flexShrink: 0,

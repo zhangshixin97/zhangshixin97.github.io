@@ -8,6 +8,7 @@ export default function Avatar() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const targets = root.querySelectorAll<HTMLElement>('[data-reveal]');
     targets.forEach((t) => gsap.set(t, { opacity: 0, y: 36 }));
 
@@ -30,7 +31,7 @@ export default function Avatar() {
       { threshold: 0.1 }
     );
     targets.forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); gsap.killTweensOf(targets); };
   }, []);
 
   const scrollToFooter = () => {

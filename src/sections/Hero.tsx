@@ -183,6 +183,8 @@ export default function Hero() {
           <img
             src={heroConfig.portrait}
             alt={heroConfig.portraitAlt}
+            fetchPriority="high"
+            decoding="async"
             style={{
               position: 'absolute',
               inset: 0,

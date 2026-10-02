@@ -198,3 +198,18 @@
     background: rgba(148, 178, 255, 0.45);
   }
 }
+
+/* Mobile spacing and accessible motion: content stays readable without animation. */
+section[id] { scroll-margin-top: 88px; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+@media (max-width: 767px) {
+  #about, #curriculum, #blueprint, #alumni, #avatar, #services { padding-top: 64px !important; padding-bottom: 64px !important; }
+  #hero h1 { font-size: clamp(48px, 15vw, 64px) !important; white-space: normal !important; }
+  #hero .kv-crystal { opacity: 0.25; }
+  .skill-doc-content table { display: block; overflow-x: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .kv-rise, [data-reveal], [data-card] { opacity: 1 !important; transform: none !important; }
+}
